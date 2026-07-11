@@ -71,12 +71,12 @@ The project maintains simplicity but is now modularized:
 
 ---
 
-## Technologies Used
+## Technologies Used & Versions
 
 - Semantic **HTML5**.
 - Modern **CSS3** (CSS Variables, Flexbox, Grid, Glassmorphism).
 - **Vanilla JavaScript (ES6+)** without frameworks.
-- **PDF-Lib** (via CDN) for PDF manipulation.
+- **PDF-Lib** (v1.17.1 via CDN) for PDF manipulation.
 - **Google Fonts** (Cinzel & Merriweather).
 - **Material Icons**.
 
