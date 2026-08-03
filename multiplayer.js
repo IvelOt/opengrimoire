@@ -78,6 +78,7 @@ const Multiplayer = {
     conn.on('close', () => {
       this.connections.delete(conn.connectionId);
       this.playerNames.delete(conn.connectionId);
+      this._sendPeerList();
       this.setStatus(this._t('mp_msg_player_left', { count: this.connections.size }), 'info');
       if (this.onDisconnect) this.onDisconnect(conn);
       this._updateInfo();
@@ -264,7 +265,7 @@ const Multiplayer = {
 
   _t(key, vars) {
     let str = getTranslation(key);
-    return str.replace(/\{(\w+)\}/g, (match, k) => (vars[k] !== undefined ? vars[k] : match));
+    return str.replace(/\{(\w+)\}/g, (match, k) => ((vars && vars[k] !== undefined) ? vars[k] : match));
   }
 };
 
