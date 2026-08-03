@@ -36,6 +36,45 @@
     <button onclick="createNewCharacter()" class="btn-hero neon-effect">
       <span class="material-icons-round">add_circle</span> <span data-i18n="btn_create">Criar Novo Personagem</span>
     </button>
+
+    <section id="multiplayer-panel" class="mp-panel surface-elevated" aria-label="Multiplayer">
+      <div class="mp-header">
+        <span class="material-icons-round">groups</span>
+        <h3 data-i18n="mp_title">Multiplayer (Teste)</h3>
+      </div>
+      <div class="mp-controls">
+        <input type="text" id="mp-name-input" class="mp-input" maxlength="20"
+          data-i18n-placeholder="mp_name_ph" placeholder="Seu Nome">
+        <input type="text" id="mp-room-input" class="mp-input" maxlength="6"
+          data-i18n-placeholder="mp_room_ph" placeholder="XXXXXX"
+          oninput="this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '')">
+        <button type="button" class="btn-secondary" onclick="Multiplayer.createRoom()">
+          <span class="material-icons-round">person_add</span> <span data-i18n="mp_btn_host">Criar Sala</span>
+        </button>
+        <button type="button" class="btn-secondary" onclick="Multiplayer.joinRoom()">
+          <span class="material-icons-round">login</span> <span data-i18n="mp_btn_join">Entrar</span>
+        </button>
+        <button type="button" class="btn-secondary" onclick="Multiplayer.broadcast({ debug: 'ping' })">
+          <span class="material-icons-round">campaign</span> <span data-i18n="mp_btn_ping_all">Broadcast</span>
+        </button>
+        <button type="button" class="btn-secondary" onclick="Multiplayer.send({ debug: 'ping' })">
+          <span class="material-icons-round">send</span> <span data-i18n="mp_btn_ping_host">Ping Mestre</span>
+        </button>
+        <button type="button" class="btn-danger" onclick="Multiplayer.closeRoom()">
+          <span class="material-icons-round">logout</span> <span data-i18n="mp_btn_leave">Sair</span>
+        </button>
+      </div>
+      <div class="mp-info">
+        <span class="mp-label" data-i18n="mp_status">Status</span>
+        <span id="mp-status-text" class="mp-value">-</span>
+        <span class="mp-label" data-i18n="mp_code">Código</span>
+        <span id="mp-code-text" class="mp-value">-</span>
+        <span class="mp-label" data-i18n="mp_players">Jogadores</span>
+        <span id="mp-players-text" class="mp-value">0</span>
+      </div>
+      <div id="mp-log" class="mp-log" aria-live="polite"></div>
+    </section>
+
     <div class="char-grid-list" id="character-list"></div>
   </div>
 
@@ -470,9 +509,11 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
   <script src="language.js"></script>
   <script src="script.js"></script>
   <script src="pdf-exporter.js"></script>
+  <script src="multiplayer.js"></script>
 </body>
 
 </html>
