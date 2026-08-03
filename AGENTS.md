@@ -8,23 +8,15 @@ This repository is **OpenGrimoire**: a simple, modern, international, and 100% o
 
 - **Goal:** Provide a lightweight, fast, and server-independent tabletop RPG character manager, focused on simplicity and user experience.
 - **Architecture:** Client-side only Single Page Application (SPA). Data is stored entirely in the browser's `localStorage`. No server-side logic or database is used.
-- **Core Files:**
-  - `index.html`: Semantic structure, layout, and internationalization tags (`data-i18n`).
-  - `style.css`: Design System, CSS variables, Grid Layout, and Media Queries for mobile ordering (supports light/dark themes).
-  - `script.js`: Core logic (CRUD for characters, stat calculations, UI state).
-  - `language.js`: Translation dictionary and language switching logic (PT-BR and EN-US).
-  - `pdf-exporter.js`: Integration with `pdf-lib` to generate filled official PDFs from the `assets/template.pdf`.
+- **Core Files:** See the File Structure section in `README.md`.
 
 ## Tech Stack & Frozen Versions
 
 No package manager or build system is used. All dependencies are loaded via CDN or are native browser APIs.
 
 - **Language:** HTML5, CSS3, Vanilla JavaScript (ES6+)
-- **Dependencies (CDN):**
-  - `pdf-lib` v1.17.1 (for PDF generation)
-  - Google Fonts: Cinzel & Merriweather
-  - Material Icons Round
-- **Data Storage:** `localStorage` (JSON serialization)
+- **Dependencies (CDN):** See the Technologies Used section in `README.md`.
+- **Data Storage:** `localStorage` (JSON serialization) with in-memory fallback for strict/incognito modes.
 
 ## Development Workflow
 

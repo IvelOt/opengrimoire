@@ -18,7 +18,7 @@ Unlike complex platforms, this project was built to be **lightweight**, **fast**
 
 - ** Internationalization (i18n):** Full support for **Portuguese (BR)** and **English (US)** with instant switching.
 - ** PDF Export:** Generate your character sheet in the official 5e model, with guaranteed formatting (flattened forms) for perfect printing.
-- ** Local Persistence:** Everything is saved automatically in the browser's `LocalStorage`. Nothing goes to the cloud.
+- ** Local Persistence:** Everything is saved automatically in the browser's `LocalStorage` (with in-memory fallback). Nothing goes to the cloud.
 - ** Mobile Optimized Layout:**
   - On PC: 3-column view (dashboard style).
   - On Mobile: Intelligent priority order (Health/Combat at the top → Attributes → Equipment → Spells).
@@ -68,6 +68,7 @@ The project maintains simplicity but is now modularized:
 - `script.js`: Core logic (CRUD, Calculations, UI).
 - `language.js`: Translation dictionary and language switching logic.
 - `pdf-exporter.js`: Integration with `pdf-lib` to generate the filled official PDF.
+- `multiplayer.js`: WebRTC network layer via PeerJS for multiplayer functionality.
 
 ---
 
@@ -77,6 +78,7 @@ The project maintains simplicity but is now modularized:
 - Modern **CSS3** (CSS Variables, Flexbox, Grid, Glassmorphism).
 - **Vanilla JavaScript (ES6+)** without frameworks.
 - **PDF-Lib** (v1.17.1 via CDN) for PDF manipulation.
+- **PeerJS** (v1.5.4 via CDN) for WebRTC multiplayer functionality.
 - **Google Fonts** (Cinzel & Merriweather).
 - **Material Icons**.
 
