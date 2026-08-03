@@ -24,8 +24,8 @@ const Generator = {
       nameKey: 'cls_barbarian', hitDie: 12, primary: 'str', secondary: 'con',
       priority: ['str', 'con', 'dex', 'wis', 'cha', 'int'],
       saves: ['str', 'con'], skills: ['athl', 'surv', 'perc', 'inti'],
-      armor: { type: 'unarmored', base: 10, dex: true, con: true, desc: 'Unarmored (10 + DES + CON)' },
-      weapon: { name: 'Greataxe', dice: '1d12', ability: 'str' },
+      armor: { type: 'unarmored', base: 10, dex: true, con: true, descKey: 'armor_unarmored_con' },
+      weapon: { nameKey: 'wpn_greataxe', dice: '1d12', ability: 'str' },
       coins: { gp: 15, sp: 0 }, speed: '9m', theme: '#E7623E',
       spells: { ability: null, cantrips: [], level1: [] },
       equip: 'Greataxe • 4 handaxes • Explorer Pack',
@@ -36,10 +36,10 @@ const Generator = {
       nameKey: 'cls_bard', hitDie: 8, primary: 'cha', secondary: 'dex',
       priority: ['cha', 'dex', 'con', 'int', 'wis', 'str'],
       saves: ['dex', 'cha'], skills: ['pers', 'perf', 'insg', 'decp'],
-      armor: { type: 'leather', base: 11, dex: true, desc: 'Leather (11 + DES)' },
-      weapon: { name: 'Rapier', dice: '1d8', ability: 'dex' },
+      armor: { type: 'leather', base: 11, dex: true, descKey: 'armor_leather' },
+      weapon: { nameKey: 'wpn_rapier', dice: '1d8', ability: 'dex' },
       coins: { gp: 25, sp: 0 }, speed: '9m', theme: '#AB6DAC',
-      spells: { ability: 'cha', cantrips: ['Vicious Mockery', 'Prestidigitation'], level1: ['Healing Word', 'Thunderwave', 'Charm Person'] },
+      spells: { ability: 'cha', cantrips: ['spell_vicious_mockery', 'spell_prestidigitation'], level1: ['spell_healing_word', 'spell_thunderwave', 'spell_charm_person'] },
       equip: 'Rapier • Leather armor • Dagger • Entertainer Pack • Instrument',
       profs: 'Light armor, Simple weapons, Hand crossbows, Longswords, Rapiers, Instruments',
       features: 'Bardic Inspiration (d6), Spellcasting, Ritual Casting'
@@ -48,10 +48,10 @@ const Generator = {
       nameKey: 'cls_cleric', hitDie: 8, primary: 'wis', secondary: 'str',
       priority: ['wis', 'str', 'con', 'cha', 'dex', 'int'],
       saves: ['wis', 'cha'], skills: ['insg', 'medi', 'hist', 'reli'],
-      armor: { type: 'chain', base: 16, dex: false, desc: 'Chain Shirt + Shield (16)' },
-      weapon: { name: 'Warhammer', dice: '1d8', ability: 'str' },
+      armor: { type: 'chain', base: 16, dex: false, descKey: 'armor_chain_shirt' },
+      weapon: { nameKey: 'wpn_warhammer', dice: '1d8', ability: 'str' },
       coins: { gp: 15, sp: 0 }, speed: '9m', theme: '#91A1B2',
-      spells: { ability: 'wis', cantrips: ['Light', 'Sacred Flame', 'Guidance'], level1: ['Cure Wounds', 'Bless', 'Guiding Bolt'] },
+      spells: { ability: 'wis', cantrips: ['spell_light', 'spell_sacred_flame', 'spell_guidance'], level1: ['spell_cure_wounds', 'spell_bless', 'spell_guiding_bolt'] },
       equip: 'Warhammer • Chain Shirt • Shield • Holy Symbol • Priest Pack',
       profs: 'Light & Medium armor, Shields, Simple weapons',
       features: 'Spellcasting, Divine Domain (Life), Channel Divinity (1/rest)'
@@ -60,10 +60,10 @@ const Generator = {
       nameKey: 'cls_druid', hitDie: 8, primary: 'wis', secondary: 'con',
       priority: ['wis', 'con', 'dex', 'cha', 'int', 'str'],
       saves: ['int', 'wis'], skills: ['natu', 'surv', 'anim', 'insg'],
-      armor: { type: 'leather', base: 11, dex: true, desc: 'Leather (11 + DES)' },
-      weapon: { name: 'Scimitar', dice: '1d6', ability: 'dex' },
+      armor: { type: 'leather', base: 11, dex: true, descKey: 'armor_leather' },
+      weapon: { nameKey: 'wpn_scimitar', dice: '1d6', ability: 'dex' },
       coins: { gp: 15, sp: 0 }, speed: '9m', theme: '#7A853B',
-      spells: { ability: 'wis', cantrips: ['Druidcraft', 'Produce Flame', 'Shillelagh'], level1: ['Entangle', 'Cure Wounds', 'Faerie Fire'] },
+      spells: { ability: 'wis', cantrips: ['spell_druidcraft', 'spell_produce_flame', 'spell_shillelagh'], level1: ['spell_entangle', 'spell_cure_wounds', 'spell_faerie_fire'] },
       equip: 'Wooden shield • Scimitar • Leather armor • Explorer Pack',
       profs: 'Light & Medium armor, Shields, Simple weapons, Herbalism kit',
       features: 'Druidic, Spellcasting, Wild Shape (2/rest)'
@@ -72,8 +72,8 @@ const Generator = {
       nameKey: 'cls_fighter', hitDie: 10, primary: 'str', secondary: 'con',
       priority: ['str', 'con', 'dex', 'wis', 'cha', 'int'],
       saves: ['str', 'con'], skills: ['athl', 'hist', 'inti', 'perc'],
-      armor: { type: 'chain', base: 16, dex: false, desc: 'Chain mail (16)' },
-      weapon: { name: 'Longsword', dice: '1d8', ability: 'str' },
+      armor: { type: 'chain', base: 16, dex: false, descKey: 'armor_chain_mail' },
+      weapon: { nameKey: 'wpn_longsword', dice: '1d8', ability: 'str' },
       coins: { gp: 20, sp: 0 }, speed: '9m', theme: '#7F513E',
       spells: { ability: null, cantrips: [], level1: [] },
       equip: 'Longsword • Shield • Chain mail • Light crossbow • Dungeoneer Pack',
@@ -84,8 +84,8 @@ const Generator = {
       nameKey: 'cls_monk', hitDie: 8, primary: 'dex', secondary: 'wis',
       priority: ['dex', 'wis', 'con', 'str', 'cha', 'int'],
       saves: ['str', 'dex'], skills: ['acro', 'stea', 'insg', 'reli'],
-      armor: { type: 'unarmored', base: 10, dex: true, wis: true, desc: 'Unarmored (10 + DES + SAB)' },
-      weapon: { name: 'Quarterstaff', dice: '1d6', ability: 'dex' },
+      armor: { type: 'unarmored', base: 10, dex: true, wis: true, descKey: 'armor_unarmored_wis' },
+      weapon: { nameKey: 'wpn_quarterstaff', dice: '1d6', ability: 'dex' },
       coins: { gp: 15, sp: 0 }, speed: '9m', theme: '#51A5C5',
       spells: { ability: null, cantrips: [], level1: [] },
       equip: 'Shortsword • Quarterstaff • Dungeoneer Pack',
@@ -96,10 +96,10 @@ const Generator = {
       nameKey: 'cls_paladin', hitDie: 10, primary: 'str', secondary: 'cha',
       priority: ['str', 'cha', 'con', 'wis', 'dex', 'int'],
       saves: ['wis', 'cha'], skills: ['insg', 'reli', 'inti', 'medi'],
-      armor: { type: 'chain', base: 18, dex: false, desc: 'Chain mail + Shield (18)' },
-      weapon: { name: 'Longsword', dice: '1d8', ability: 'str' },
+      armor: { type: 'chain', base: 18, dex: false, descKey: 'armor_chain_mail_shield' },
+      weapon: { nameKey: 'wpn_longsword', dice: '1d8', ability: 'str' },
       coins: { gp: 25, sp: 0 }, speed: '9m', theme: '#B59E54',
-      spells: { ability: 'cha', cantrips: [], level1: ['Lay on Hands', 'Bless', 'Thunderous Smite'] },
+      spells: { ability: 'cha', cantrips: [], level1: ['spell_lay_on_hands', 'spell_bless', 'spell_thunderous_smite'] },
       equip: 'Longsword • Shield • Chain mail • Holy Symbol • Priest Pack',
       profs: 'All armor, Shields, Simple & Martial weapons',
       features: 'Divine Sense, Lay on Hands (5 HP), Fighting Style, Divine Smite'
@@ -108,10 +108,10 @@ const Generator = {
       nameKey: 'cls_ranger', hitDie: 10, primary: 'dex', secondary: 'wis',
       priority: ['dex', 'wis', 'con', 'str', 'cha', 'int'],
       saves: ['str', 'dex'], skills: ['stea', 'surv', 'natu', 'perc'],
-      armor: { type: 'leather', base: 11, dex: true, desc: 'Leather (11 + DES)' },
-      weapon: { name: 'Longbow', dice: '1d8', ability: 'dex' },
+      armor: { type: 'leather', base: 11, dex: true, descKey: 'armor_leather' },
+      weapon: { nameKey: 'wpn_longbow', dice: '1d8', ability: 'dex' },
       coins: { gp: 20, sp: 0 }, speed: '9m', theme: '#7A853B',
-      spells: { ability: 'wis', cantrips: [], level1: ['Hunter\'s Mark', 'Speak with Animals'] },
+      spells: { ability: 'wis', cantrips: [], level1: ['Hunter\'s Mark', 'spell_speak_with_animals'] },
       equip: 'Longbow • 20 arrows • Leather armor • Shortsword • Explorer Pack',
       profs: 'Light & Medium armor, Shields, Simple & Martial weapons',
       features: 'Favored Enemy, Natural Explorer, Fighting Style (Archery)'
@@ -120,8 +120,8 @@ const Generator = {
       nameKey: 'cls_rogue', hitDie: 8, primary: 'dex', secondary: 'con',
       priority: ['dex', 'con', 'int', 'wis', 'cha', 'str'],
       saves: ['dex', 'int'], skills: ['stea', 'slei', 'decp', 'perc'],
-      armor: { type: 'leather', base: 11, dex: true, desc: 'Leather (11 + DES)' },
-      weapon: { name: 'Rapier', dice: '1d8', ability: 'dex' },
+      armor: { type: 'leather', base: 11, dex: true, descKey: 'armor_leather' },
+      weapon: { nameKey: 'wpn_rapier', dice: '1d8', ability: 'dex' },
       coins: { gp: 25, sp: 0 }, speed: '9m', theme: '#4A4A4A',
       spells: { ability: null, cantrips: [], level1: [] },
       equip: 'Rapier • Shortbow • 20 arrows • Leather armor • Thieves\' Tools • Burglar Pack',
@@ -132,10 +132,10 @@ const Generator = {
       nameKey: 'cls_sorcerer', hitDie: 6, primary: 'cha', secondary: 'con',
       priority: ['cha', 'con', 'dex', 'int', 'wis', 'str'],
       saves: ['con', 'cha'], skills: ['decp', 'inti', 'pers', 'slei'],
-      armor: { type: 'none', base: 10, dex: true, desc: 'None (10 + DES)' },
-      weapon: { name: 'Dagger', dice: '1d4', ability: 'dex' },
+      armor: { type: 'none', base: 10, dex: true, descKey: 'armor_none' },
+      weapon: { nameKey: 'wpn_dagger', dice: '1d4', ability: 'dex' },
       coins: { gp: 25, sp: 0 }, speed: '9m', theme: '#E7623E',
-      spells: { ability: 'cha', cantrips: ['Fire Bolt', 'Minor Illusion', 'Ray of Frost'], level1: ['Magic Missile', 'Shield', 'Sleep'] },
+      spells: { ability: 'cha', cantrips: ['spell_fire_bolt', 'spell_minor_illusion', 'spell_ray_of_frost'], level1: ['spell_magic_missile', 'spell_shield', 'spell_sleep'] },
       equip: 'Light crossbow • 20 bolts • Dagger • Component pouch • Dungeoneer Pack',
       profs: 'Daggers, Darts, Slings, Quarterstaffs, Light crossbows',
       features: 'Spellcasting, Sorcerous Origin (Draconic Bloodline), Font of Magic (2 points)'
@@ -144,10 +144,10 @@ const Generator = {
       nameKey: 'cls_warlock', hitDie: 8, primary: 'cha', secondary: 'con',
       priority: ['cha', 'con', 'dex', 'int', 'wis', 'str'],
       saves: ['wis', 'cha'], skills: ['arca', 'decp', 'hist', 'inti'],
-      armor: { type: 'leather', base: 11, dex: true, desc: 'Leather (11 + DES)' },
-      weapon: { name: 'Dagger', dice: '1d4', ability: 'dex' },
+      armor: { type: 'leather', base: 11, dex: true, descKey: 'armor_leather' },
+      weapon: { nameKey: 'wpn_dagger', dice: '1d4', ability: 'dex' },
       coins: { gp: 25, sp: 0 }, speed: '9m', theme: '#7F513E',
-      spells: { ability: 'cha', cantrips: ['Eldritch Blast', 'Mage Hand', 'Chill Touch'], level1: ['Hex', 'Witch Bolt', 'Arms of Hadar'] },
+      spells: { ability: 'cha', cantrips: ['spell_eldritch_blast', 'spell_mage_hand', 'spell_chill_touch'], level1: ['spell_hex', 'spell_witch_bolt', 'spell_arms_of_hadar'] },
       equip: 'Light crossbow • 20 bolts • Leather armor • Dagger • Arcane focus • Scholar Pack',
       profs: 'Light armor, Simple weapons',
       features: 'Otherworldly Patron (The Fiend), Pact Magic (1 slot), Eldritch Invocation'
@@ -156,10 +156,10 @@ const Generator = {
       nameKey: 'cls_wizard', hitDie: 6, primary: 'int', secondary: 'dex',
       priority: ['int', 'dex', 'con', 'wis', 'cha', 'str'],
       saves: ['int', 'wis'], skills: ['arca', 'hist', 'invs', 'medi'],
-      armor: { type: 'none', base: 10, dex: true, desc: 'None (10 + DES)' },
-      weapon: { name: 'Quarterstaff', dice: '1d6', ability: 'str' },
+      armor: { type: 'none', base: 10, dex: true, descKey: 'armor_none' },
+      weapon: { nameKey: 'wpn_quarterstaff', dice: '1d6', ability: 'str' },
       coins: { gp: 25, sp: 0 }, speed: '9m', theme: '#51A5C5',
-      spells: { ability: 'int', cantrips: ['Fire Bolt', 'Mage Hand', 'Minor Illusion', 'Ray of Frost'], level1: ['Magic Missile', 'Shield', 'Mage Armor', 'Burning Hands'] },
+      spells: { ability: 'int', cantrips: ['spell_fire_bolt', 'spell_mage_hand', 'spell_minor_illusion', 'spell_ray_of_frost'], level1: ['spell_magic_missile', 'spell_shield', 'spell_mage_armor', 'spell_burning_hands'] },
       equip: 'Quarterstaff • Dagger • Component pouch • Scholar Pack • Spellbook',
       profs: 'Daggers, Darts, Slings, Quarterstaffs, Light crossbows',
       features: 'Spellcasting, Arcane Recovery, Spellbook'
@@ -304,7 +304,7 @@ const Generator = {
       const std = [15, 14, 13, 12, 10, 8];
       baseScores = this.assignScores(std, cls.priority);
     } else {
-      baseScores = this.assignScores(this.rollScores(), cls.priority);
+      baseScores = this.assignScores(config.rolledScores || this.rollScores(), cls.priority);
     }
 
     // 2) Bônus raciais
@@ -335,7 +335,7 @@ const Generator = {
     const atkSign = atkBonus >= 0 ? '+' : '';
     const dmgBonus = this.mod(scores[atkAbility]);
     const dmgSign = dmgBonus >= 0 ? '+' : '';
-    const attacks = `${cls.weapon.name} | ${atkSign}${atkBonus} | ${cls.weapon.dice}${dmgSign}${dmgBonus}`;
+    const attacks = `${this._t(cls.weapon.nameKey)} | ${atkSign}${atkBonus} | ${cls.weapon.dice}${dmgSign}${dmgBonus}`;
 
     // Proficiências (classe + antecedente + raça)
     const profSkills = [...cls.skills, ...bg.skills];
@@ -432,21 +432,21 @@ const Generator = {
       death_save_fail_1: false, death_save_fail_2: false, death_save_fail_3: false,
 
       attacks,
-      equipment: cls.equip + `\n• ${bg.desc}`,
+      equipment: this._t(cls.equipKey) + `\n• ${this._t(bg.descKey)}`,
       cp: coins.cp, sp: coins.sp, ep: coins.ep, gp: coins.gp, pp: coins.pp,
 
-      proficiencies: `${cls.profs}\n• ${bg.nameKey} skills & tools`,
-      featuresTraits: cls.features,
+      proficiencies: `${this._t(cls.profsKey)}\n• ${this._t(bg.nameKey)} ${this._t('gen_skills_tools')}`,
+      featuresTraits: this._t(cls.featuresKey),
       spellcastingAbility: spells.ability ? spells.ability.toUpperCase() : '',
       spellSaveDC,
       spellAttackBonus,
 
-      spells_cantrips: spells.cantrips.join('\n'),
-      spells_lvl1: spells.level1.join('\n'),
+      spells_cantrips: spells.cantrips.map(s => this._t(s)).join('\n'),
+      spells_lvl1: spells.level1.map(s => this._t(s)).join('\n'),
       slots_lvl1_total: spells.level1.length ? 2 : '',
       slots_lvl1_used: '',
 
-      backstory: `A ${this._t(cls.nameKey).toLowerCase()} ${this._t('race_' + config.species).toLowerCase()} com origem de ${this._t(bg.nameKey).toLowerCase()}.`
+      backstory: this._t('gen_backstory_template').replace('{race}', this._t('race_' + config.species).toLowerCase()).replace('{class}', this._t(cls.nameKey).toLowerCase()).replace('{background}', this._t(bg.nameKey).toLowerCase())
     };
   },
 
@@ -523,7 +523,12 @@ const Generator = {
   },
 
   rollPreview() {
-    const scores = this.rollScores();
+    let scores;
+    if (this.state.method === 'standard') {
+      scores = [15, 14, 13, 12, 10, 8];
+    } else {
+      scores = this.rollScores();
+    }
     this.state.rolledScores = scores;
     const container = document.getElementById('gen-preview-scores');
     if (!container) return;
@@ -545,31 +550,35 @@ const Generator = {
   // Gera a ficha conforme o estado atual da UI.
   generate() {
     const nameInput = document.getElementById('gen-name-input');
-    const name = nameInput ? nameInput.value : '';
+    let name = nameInput ? nameInput.value : '';
 
     let species = this.state.selectedRace;
     if (species === 'random') species = this._randomRace();
 
+    let charClass = this.state.selectedClass;
+    let bg = this.state.background;
+    let align = this.state.alignment;
+
     if (this.state.mode === 'random') {
-      const randomClass = this._randomClass();
-      this.state.selectedClass = randomClass;
-      this.state.selectedRace = species;
-      if (this.state.background === 'random') this.state.background = this._randomBackground();
-      if (this.state.alignment === 'random') this.state.alignment = this._randomAlignment();
-      if (!name.trim()) nameInput.value = this._randomName(species);
+      charClass = this._randomClass();
+      if (bg === 'random') bg = this._randomBackground();
+      if (align === 'random') align = this._randomAlignment();
+      if (!name.trim()) name = this._randomName(species);
     }
 
-    const resolvedAlignment = this.state.alignment === 'random' ? this._randomAlignment() : this.state.alignment;
+    if (bg === 'random') bg = this._randomBackground();
+    if (align === 'random') align = this._randomAlignment();
 
     const config = {
-      name: (nameInput ? nameInput.value : '') || this._randomName(species),
-      charClass: this.state.selectedClass,
-      species,
+      name: name || this._randomName(species),
+      charClass: charClass,
+      species: species,
       level: this.state.level,
       method: this.state.method,
-      background: this.state.background === 'random' ? this._randomBackground() : this.state.background,
-      alignment: resolvedAlignment,
-      theme: this.state.theme
+      background: bg,
+      alignment: align,
+      theme: this.classes[charClass] ? this.classes[charClass].theme : this.state.theme,
+      rolledScores: this.state.method === 'roll' && this.state.rolledScores ? this.state.rolledScores : null
     };
 
     const build = this.build(config);

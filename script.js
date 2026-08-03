@@ -485,28 +485,44 @@ function updateHpBar() {
 }
 
 // ===== PAGE TRANSITIONS =====
+let transitionTimeoutId = null;
+let animationTimeoutId = null;
 
 function showSheet() {
+  if (transitionTimeoutId) clearTimeout(transitionTimeoutId);
+  if (animationTimeoutId) clearTimeout(animationTimeoutId);
+  
+  dashboard.classList.remove('view-enter');
   dashboard.classList.add('view-exit');
-  setTimeout(() => {
+  
+  transitionTimeoutId = setTimeout(() => {
     dashboard.classList.add('hidden');
     dashboard.classList.remove('view-exit');
-    sheetEditor.classList.remove('hidden');
+    
+    sheetEditor.classList.remove('hidden', 'view-exit');
     sheetEditor.classList.add('view-enter');
     window.scrollTo(0, 0);
-    setTimeout(() => sheetEditor.classList.remove('view-enter'), 450);
+    
+    animationTimeoutId = setTimeout(() => sheetEditor.classList.remove('view-enter'), 450);
   }, 220);
 }
 
 function showDashboard() {
+  if (transitionTimeoutId) clearTimeout(transitionTimeoutId);
+  if (animationTimeoutId) clearTimeout(animationTimeoutId);
+  
+  sheetEditor.classList.remove('view-enter');
   sheetEditor.classList.add('view-exit');
-  setTimeout(() => {
+  
+  transitionTimeoutId = setTimeout(() => {
     sheetEditor.classList.add('hidden');
     sheetEditor.classList.remove('view-exit');
-    dashboard.classList.remove('hidden');
+    
+    dashboard.classList.remove('hidden', 'view-exit');
     dashboard.classList.add('view-enter');
     renderList();
-    setTimeout(() => dashboard.classList.remove('view-enter'), 450);
+    
+    animationTimeoutId = setTimeout(() => dashboard.classList.remove('view-enter'), 450);
   }, 220);
 }
 
