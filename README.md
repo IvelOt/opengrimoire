@@ -2,7 +2,7 @@
 
 > Test here -> [Demo](https://levirenato.github.io/opengrimoire/)
 
-> A simple, modern, international, and 100% offline D&D 5th Edition character sheet manager.
+> A simple, modern, international D&D 5th Edition character sheet manager, designed to work offline with an optional WebRTC multiplayer mode.
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Version](https://img.shields.io/badge/version-1.1.0-green.svg)
@@ -18,6 +18,7 @@ Unlike complex platforms, this project was built to be **lightweight**, **fast**
 
 - ** Internationalization (i18n):** Full support for **Portuguese (BR)** and **English (US)** with instant switching.
 - ** PDF Export:** Generate your character sheet in the official 5e model, with guaranteed formatting (flattened forms) for perfect printing.
+- ** Optional Multiplayer:** Host or join a room via WebRTC (PeerJS) to sync combat states and health points peer-to-peer.
 - ** Local Persistence:** Everything is saved automatically in the browser's `LocalStorage` (with in-memory fallback). Nothing goes to the cloud.
 - ** Mobile Optimized Layout:**
   - On PC: 3-column view (dashboard style).

@@ -1,6 +1,6 @@
 # OpenGrimoire — Constitution
 
-This repository is **OpenGrimoire**: a simple, modern, international, and 100% offline D&D 5th Edition character sheet manager.
+This repository is **OpenGrimoire**: a simple, modern, international D&D 5th Edition character sheet manager, working offline with optional WebRTC multiplayer.
 
 > This project was adopted by `ai_bridge_brain`. Any agentic CLI or editor (Claude Code, Codex, Gemini CLI, opencode, Cursor, VS Code…) must read this file before acting.
 
@@ -37,7 +37,7 @@ This is a pure front-end project with no build step.
 
 ## Non-negotiable Rules
 
-1. **No Backend:** The application must remain 100% offline and server-independent. All features must rely on client-side APIs (like `localStorage` or `IndexedDB` if needed in the future).
+1. **No Backend:** The application must remain offline-capable and server-independent. All features must rely on client-side APIs (like `localStorage` or `IndexedDB` if needed in the future). The WebRTC multiplayer operates peer-to-peer without application servers.
 2. **Vanilla JS Only:** Do not introduce heavy front-end frameworks (React, Vue, Angular) or complex build tools (Webpack, Vite) without explicit user permission. The project aims to remain lightweight and accessible.
 3. **Responsive Design:** All UI changes must be mobile-friendly and utilize the established CSS Grid/Flexbox layout systems.
 4. **Internationalization:** Any new text added to the UI must be mapped in `language.js` and support both PT-BR and EN-US. Use the `data-i18n` attribute in HTML.
