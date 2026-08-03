@@ -1,3 +1,16 @@
+const safeStorage = {
+  data: {},
+  getItem(key) {
+    try { return localStorage.getItem(key); } catch (e) { return this.data[key] || null; }
+  },
+  setItem(key, value) {
+    try { localStorage.setItem(key, value); } catch (e) { this.data[key] = value; }
+  },
+  removeItem(key) {
+    try { localStorage.removeItem(key); } catch (e) { delete this.data[key]; }
+  }
+};
+
 const translations = {
   'pt-BR': {
     subtitle: "Gerencie seus heróis e suas histórias",
@@ -229,7 +242,7 @@ const translations = {
   }
 };
 
-let currentLang = localStorage.getItem('dnd_lang') || 'pt-BR';
+let currentLang = safeStorage.getItem('dnd_lang') || 'pt-BR';
 
 function initLanguage() {
   document.querySelectorAll('.lang-select').forEach(sel => sel.value = currentLang);
@@ -238,7 +251,7 @@ function initLanguage() {
 
 function changeLanguage(lang) {
   currentLang = lang;
-  localStorage.setItem('dnd_lang', lang);
+  safeStorage.setItem('dnd_lang', lang);
   document.querySelectorAll('.lang-select').forEach(sel => sel.value = lang);
   applyLanguage(lang);
 

@@ -72,7 +72,7 @@
       </div>
     </nav>
 
-    <form id="char-form" class="sheet-layout-new">
+    <form id="char-form" class="sheet-layout-new" onsubmit="return false">
       <section class="sheet-header-new surface-elevated">
         <div class="header-top-row">
           <div class="char-portrait-container">
@@ -112,7 +112,7 @@
               </div>
               <div class="meta-field">
                 <label data-i18n="lbl_level">Nível</label>
-                <input type="number" name="level" placeholder="1" class="input-small" oninput="handleLevelChange()">
+                <input type="number" name="level" placeholder="1" class="input-small" onchange="handleLevelChange()">
               </div>
               <div class="meta-field">
                 <label data-i18n="lbl_race">Raça</label>

@@ -1,6 +1,6 @@
-let characters = JSON.parse(localStorage.getItem('dnd_neon_chars')) || [];
+let characters = JSON.parse(safeStorage.getItem('dnd_neon_chars')) || [];
 let currentId = null;
-let globalTheme = localStorage.getItem('dnd_global_theme') || 'light';
+let globalTheme = safeStorage.getItem('dnd_global_theme') || 'light';
 let isDirty = false;
 
 const dashboard = document.getElementById('dashboard');
@@ -73,7 +73,7 @@ function toggleGlobalTheme() {
     globalTheme = 'dark';
     updateThemeIcons('light_mode');
   }
-  localStorage.setItem('dnd_global_theme', globalTheme);
+  safeStorage.setItem('dnd_global_theme', globalTheme);
 }
 
 function updateThemeIcons(iconName) {
@@ -326,7 +326,7 @@ async function closeCharacter() {
 }
 
 function saveToStorage() {
-  localStorage.setItem('dnd_neon_chars', JSON.stringify(characters));
+  safeStorage.setItem('dnd_neon_chars', JSON.stringify(characters));
 }
 
 // ===== SPELLS =====
