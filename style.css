@@ -1189,3 +1189,187 @@ input[type="number"] {
   from { transform: scale(0.92) translateY(10px); opacity: 0; }
   to { transform: scale(1) translateY(0); opacity: 1; }
 }
+
+/* ===== MULTIPLAYER DEBUG PANEL ===== */
+.mp-panel {
+  margin-bottom: 20px;
+}
+
+.mp-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.mp-header .material-icons-round {
+  color: var(--accent-primary);
+}
+
+.mp-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.mp-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 14px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.mp-controls .btn-secondary,
+.mp-controls .btn-danger {
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.mp-controls .btn-secondary:disabled,
+.mp-controls .btn-danger:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.mp-input {
+  background: transparent;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  color: var(--text-primary);
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  max-width: 130px;
+}
+
+.mp-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  align-items: baseline;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.mp-label {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.7rem;
+}
+
+.mp-value {
+  color: var(--text-primary);
+}
+
+.mp-value.mp-success { color: #2e7d32; }
+.mp-value.mp-error { color: var(--semantic-error); }
+.mp-value.mp-info { color: var(--text-secondary); }
+
+:root.dark .mp-value.mp-success,
+:root.dark .mp-log-line.mp-log-success { color: #4caf50; }
+
+.mp-log {
+  max-height: 140px;
+  overflow-y: auto;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  font-family: monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.mp-log-line.mp-log-error { color: var(--semantic-error); }
+.mp-log-line.mp-log-success { color: #2e7d32; }
+
+/* ===== MULTIPLAYER COMBAT PANEL (Master view) ===== */
+.mp-combat {
+  margin-top: 14px;
+  border-top: 1px solid var(--border-soft);
+  padding-top: 12px;
+}
+
+.mp-combat-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.mp-combat-header .material-icons-round {
+  color: var(--accent-primary);
+}
+
+.mp-combat-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.mp-combat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.mp-combat-table th,
+.mp-combat-table td {
+  text-align: left;
+  padding: 8px 8px;
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: middle;
+}
+
+.mp-combat-table th {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.7rem;
+}
+
+.mp-combat-empty {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 12px 8px;
+}
+
+.mp-combat-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.mp-combat-delta {
+  width: 56px;
+  background: transparent;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 4px 6px;
+  color: var(--text-primary);
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+}
+
+.mp-combat-actions .btn-secondary,
+.mp-combat-actions .btn-danger {
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.mp-hp-edit {
+  width: 60px;
+  background: transparent;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 4px 6px;
+  color: var(--text-primary);
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  text-align: center;
+}
