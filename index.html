@@ -48,10 +48,10 @@
         <input type="text" id="mp-room-input" class="mp-input" maxlength="6"
           data-i18n-placeholder="mp_room_ph" placeholder="XXXXXX"
           oninput="this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '')">
-        <button type="button" class="btn-secondary" onclick="Multiplayer.createRoom()">
+        <button type="button" class="btn-secondary" id="mp-btn-host" onclick="Multiplayer.createRoom()">
           <span class="material-icons-round">person_add</span> <span data-i18n="mp_btn_host">Criar Sala</span>
         </button>
-        <button type="button" class="btn-secondary" onclick="Multiplayer.joinRoom()">
+        <button type="button" class="btn-secondary" id="mp-btn-join" onclick="Multiplayer.joinRoom()">
           <span class="material-icons-round">login</span> <span data-i18n="mp_btn_join">Entrar</span>
         </button>
         <button type="button" class="btn-secondary" onclick="Multiplayer.broadcast({ debug: 'ping' })">
@@ -71,6 +71,23 @@
         <span id="mp-code-text" class="mp-value">-</span>
         <span class="mp-label" data-i18n="mp_players">Jogadores</span>
         <span id="mp-players-text" class="mp-value">0</span>
+      </div>
+      <div id="mp-combat-panel" class="mp-combat hidden" aria-label="Combate">
+        <div class="mp-combat-header">
+          <span class="material-icons-round">health_and_safety</span>
+          <h3 data-i18n="mp_combat_title">Controle de Vida</h3>
+        </div>
+        <table class="mp-combat-table">
+          <thead>
+            <tr>
+              <th data-i18n="mp_col_player">Jogador</th>
+              <th data-i18n="mp_col_hp">PV</th>
+              <th data-i18n="mp_col_actions">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="mp-combat-body"></tbody>
+        </table>
+        <div id="mp-combat-empty" class="mp-combat-empty hidden" data-i18n="mp_no_players">Nenhum jogador conectado ainda.</div>
       </div>
       <div id="mp-log" class="mp-log" aria-live="polite"></div>
     </section>

@@ -139,6 +139,7 @@ const translations = {
     mp_players: "Jogadores",
 
     mp_msg_active_session: "Já existe uma sessão ativa. Saia antes de continuar.",
+    mp_msg_name_required: "Digite seu nome primeiro.",
     mp_msg_room_created: "Sala criada! Código: {code}",
     mp_msg_invalid_code: "Código inválido. Use 6 letras/números.",
     mp_msg_joined_room: "Conectado à sala {code}",
@@ -153,7 +154,19 @@ const translations = {
     mp_msg_send_player_only: "Só o Jogador pode usar send().",
     mp_msg_no_conn: "Sem conexão com o Mestre.",
     mp_msg_session_closed: "Sessão encerrada.",
-    mp_msg_received: "Recebido: {data}"
+    mp_msg_received: "Recebido: {data}",
+    mp_msg_sheet_sent: "Ficha enviada ao Mestre.",
+    mp_msg_sheet_received: "Ficha recebida de {name}.",
+    mp_msg_state_received: "Estado de combate atualizado pelo Mestre.",
+    mp_msg_hp_updated: "Vida de {name} atualizada para {hp}.",
+    mp_msg_hp_locked: "Vida controlada pelo Mestre. Campo bloqueado.",
+    mp_combat_title: "Controle de Vida",
+    mp_col_player: "Jogador",
+    mp_col_hp: "PV",
+    mp_col_actions: "Ações",
+    mp_no_players: "Nenhum jogador conectado ainda.",
+    mp_btn_heal: "Curar",
+    mp_btn_damage: "Dano"
   },
   'en-US': {
     subtitle: "Manage your heroes and their stories",
@@ -282,6 +295,7 @@ const translations = {
     mp_players: "Players",
 
     mp_msg_active_session: "An active session already exists. Leave first.",
+    mp_msg_name_required: "Enter your name first.",
     mp_msg_room_created: "Room created! Code: {code}",
     mp_msg_invalid_code: "Invalid code. Use 6 letters/numbers.",
     mp_msg_joined_room: "Connected to room {code}",
@@ -296,7 +310,19 @@ const translations = {
     mp_msg_send_player_only: "Only the Player can use send().",
     mp_msg_no_conn: "No connection to the Master.",
     mp_msg_session_closed: "Session closed.",
-    mp_msg_received: "Received: {data}"
+    mp_msg_received: "Received: {data}",
+    mp_msg_sheet_sent: "Sheet sent to the Master.",
+    mp_msg_sheet_received: "Sheet received from {name}.",
+    mp_msg_state_received: "Combat state updated by the Master.",
+    mp_msg_hp_updated: "{name}'s HP updated to {hp}.",
+    mp_msg_hp_locked: "HP controlled by the Master. Field locked.",
+    mp_combat_title: "HP Control",
+    mp_col_player: "Player",
+    mp_col_hp: "HP",
+    mp_col_actions: "Actions",
+    mp_no_players: "No players connected yet.",
+    mp_btn_heal: "Heal",
+    mp_btn_damage: "Damage"
   }
 };
 
