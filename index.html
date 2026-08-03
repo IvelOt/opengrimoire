@@ -381,18 +381,21 @@
               <span class="material-symbols-outlined">favorite</span>
               <label data-i18n="lbl_hp_title">Pontos de Vida</label>
             </div>
+            <div class="hp-bar-wrap">
+              <div class="hp-bar" id="hp-visual-bar" aria-hidden="true"></div>
+            </div>
             <div class="hp-inputs">
               <div class="hp-field">
                 <label data-i18n="lbl_hp_max">Máximo</label>
-                <input type="number" name="hpMax" placeholder="0">
+                <input type="number" name="hpMax" placeholder="0" oninput="updateHpBar()">
               </div>
               <div class="hp-field hp-current-field">
                 <label data-i18n="lbl_hp_curr">Atual</label>
-                <input type="number" name="hpCurrent" placeholder="0" class="hp-current-input">
+                <input type="number" name="hpCurrent" placeholder="0" class="hp-current-input" oninput="updateHpBar()">
               </div>
               <div class="hp-field">
                 <label data-i18n="lbl_hp_temp">Temp</label>
-                <input type="number" name="hpTemp" placeholder="0">
+                <input type="number" name="hpTemp" placeholder="0" oninput="updateHpBar()">
               </div>
             </div>
           </div>

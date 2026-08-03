@@ -234,9 +234,8 @@ function loadCharacter(id) {
   const firstTab = document.querySelector('.tab-button');
   if (firstTab) firstTab.click();
 
-  dashboard.classList.add('hidden');
-  sheetEditor.classList.remove('hidden');
-  window.scrollTo(0, 0);
+  showSheet();
+  updateHpBar();
 
   isDirty = false;
   charForm.addEventListener('input', markDirty);
@@ -320,9 +319,7 @@ async function closeCharacter() {
   isDirty = false;
   charForm.removeEventListener('input', markDirty);
   charForm.removeEventListener('change', markDirty);
-  sheetEditor.classList.add('hidden');
-  dashboard.classList.remove('hidden');
-  renderList();
+  showDashboard();
 }
 
 function saveToStorage() {
@@ -459,13 +456,79 @@ function handlePortraitUpload(event) {
   reader.readAsDataURL(file);
 }
 
+// ===== HP VISUAL BAR =====
+
+function updateHpBar() {
+  const bar = document.getElementById('hp-visual-bar');
+  if (!bar) return;
+
+  const max = parseInt(document.querySelector('input[name="hpMax"]')?.value) || 0;
+  const cur = parseInt(document.querySelector('input[name="hpCurrent"]')?.value) || 0;
+  const temp = parseInt(document.querySelector('input[name="hpTemp"]')?.value) || 0;
+
+  const effective = cur + Math.max(temp, 0);
+  const pct = max > 0 ? Math.max(0, Math.min(100, (effective / max) * 100)) : 0;
+
+  bar.style.width = pct + '%';
+
+  if (max <= 0) {
+    bar.classList.remove('hp-state-low', 'hp-state-warn');
+  } else if (pct <= 25) {
+    bar.classList.add('hp-state-low');
+    bar.classList.remove('hp-state-warn');
+  } else if (pct <= 50) {
+    bar.classList.add('hp-state-warn');
+    bar.classList.remove('hp-state-low');
+  } else {
+    bar.classList.remove('hp-state-low', 'hp-state-warn');
+  }
+}
+
+// ===== PAGE TRANSITIONS =====
+
+function showSheet() {
+  dashboard.classList.add('view-exit');
+  setTimeout(() => {
+    dashboard.classList.add('hidden');
+    dashboard.classList.remove('view-exit');
+    sheetEditor.classList.remove('hidden');
+    sheetEditor.classList.add('view-enter');
+    window.scrollTo(0, 0);
+    setTimeout(() => sheetEditor.classList.remove('view-enter'), 450);
+  }, 220);
+}
+
+function showDashboard() {
+  sheetEditor.classList.add('view-exit');
+  setTimeout(() => {
+    sheetEditor.classList.add('hidden');
+    sheetEditor.classList.remove('view-exit');
+    dashboard.classList.remove('hidden');
+    dashboard.classList.add('view-enter');
+    renderList();
+    setTimeout(() => dashboard.classList.remove('view-enter'), 450);
+  }, 220);
+}
+
 // ===== TABS =====
 
 function switchTab(event, tabId) {
+  const activePanel = document.querySelector('.tab-panel.active');
   document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
   event.currentTarget.classList.add('active');
-  document.getElementById(tabId).classList.add('active');
+  const nextPanel = document.getElementById(tabId);
+  if (activePanel && activePanel !== nextPanel) {
+    nextPanel.classList.add('tab-entering');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        nextPanel.classList.add('active');
+        setTimeout(() => nextPanel.classList.remove('tab-entering'), 300);
+      });
+    });
+  } else {
+    nextPanel.classList.add('active');
+  }
 }
 
 // ===== EXPORT JSON =====
