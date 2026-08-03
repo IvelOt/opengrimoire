@@ -96,7 +96,7 @@ const Generator = {
       nameKey: 'cls_paladin', hitDie: 10, primary: 'str', secondary: 'cha',
       priority: ['str', 'cha', 'con', 'wis', 'dex', 'int'],
       saves: ['wis', 'cha'], skills: ['insg', 'reli', 'inti', 'medi'],
-      armor: { type: 'chain', base: 16, dex: false, desc: 'Chain mail + Shield (18)' },
+      armor: { type: 'chain', base: 18, dex: false, desc: 'Chain mail + Shield (18)' },
       weapon: { name: 'Longsword', dice: '1d8', ability: 'str' },
       coins: { gp: 25, sp: 0 }, speed: '9m', theme: '#B59E54',
       spells: { ability: 'cha', cantrips: [], level1: ['Lay on Hands', 'Bless', 'Thunderous Smite'] },

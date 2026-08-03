@@ -26,6 +26,7 @@ Unlike complex platforms, this project was built to be **lightweight**, **fast**
 - ** Customization:** Choose individual highlight color (theme) for each character.
 - ** Dynamic Spells:** The spell slot list expands automatically (Levels 1 to 9) based on character level.
 - ** Intelligent Automation:** Automatic calculation of attribute modifiers.
+- ** Quick Character Generator:** Build a complete, adventure-ready D&D 5e hero in one click — pick one of 12 class archetypes or go fully random. Attributes are rolled (4d6 drop lowest) or taken from the standard array, then distributed smartly to fit the class role, with racial bonuses, derived HP/AC/initiative, saving throws, skills, spells, starting equipment and a fantasy name.
 - ** Import & Export:** Complete backup via JSON, including the avatar image.
 
 ---
@@ -66,6 +67,7 @@ The project maintains simplicity but is now modularized:
 - `index.html`: Semantic structure, layout, and internationalization tags (`data-i18n`).
 - `style.css`: Design System, CSS variables, Grid Layout, and Media Queries for mobile ordering.
 - `script.js`: Core logic (CRUD, Calculations, UI).
+- `generator.js`: Quick character generator (class archetypes, races, backgrounds, smart attribute rolling).
 - `language.js`: Translation dictionary and language switching logic.
 - `pdf-exporter.js`: Integration with `pdf-lib` to generate the filled official PDF.
 - `multiplayer.js`: WebRTC network layer via PeerJS for multiplayer functionality.
