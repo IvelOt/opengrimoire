@@ -99,7 +99,8 @@ const Multiplayer = {
       charName: '',
       hpMax: 0,
       hpCurrent: 0,
-      hpTouched: false
+      hpTouched: false,
+      delta: 1
     });
 
     conn.on('data', (data) => this._handleIncoming(data, conn));
@@ -241,9 +242,12 @@ const Multiplayer = {
   _handlePlayerSheet(conn, payload) {
     const p = payload || {};
     const existing = this.combatState.get(conn.connectionId);
-    const entry = existing || { name: '', charName: '', hpMax: 0, hpCurrent: 0, hpTouched: false };
+    const entry = existing || { name: '', charName: '', hpMax: 0, hpCurrent: 0, hpTouched: false, delta: 1 };
     entry.name = p.name || conn.metadata?.name || entry.name || 'Jogador';
-    if (p.charName !== undefined) entry.charName = p.charName;
+    if (p.charName !== undefined) {
+      if (p.charName !== entry.charName) entry.hpTouched = false;
+      entry.charName = p.charName;
+    }
     // Só aceita HP novo se o Mestre ainda não mexeu no estado do jogador.
     if (!entry.hpTouched) {
       if (p.hpMax !== undefined) entry.hpMax = parseInt(p.hpMax, 10) || 0;
@@ -336,6 +340,7 @@ const Multiplayer = {
     };
     set('hpMax', player.hpMax);
     set('hpCurrent', player.hpCurrent);
+    if (typeof saveCharacter === 'function') saveCharacter();
   },
 
   afterCharacterLoad() {
@@ -498,7 +503,7 @@ const Multiplayer = {
       const delta = document.createElement('input');
       delta.type = 'number';
       delta.className = 'mp-combat-delta';
-      delta.value = '1';
+      delta.value = p.delta !== undefined ? p.delta : 1;
       delta.min = '1';
       const dmgBtn = document.createElement('button');
       dmgBtn.type = 'button';
@@ -551,6 +556,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   body && body.addEventListener('change', (e) => {
+    if (e.target.classList.contains('mp-combat-delta')) {
+      const tr = e.target.closest('tr');
+      const connId = tr && tr.dataset.conn;
+      if (connId) {
+        const entry = Multiplayer.combatState.get(connId);
+        if (entry) entry.delta = parseInt(e.target.value, 10) || 1;
+      }
+      return;
+    }
     if (!e.target.classList.contains('mp-hp-edit')) return;
     const tr = e.target.closest('tr');
     const connId = tr && tr.dataset.conn;
