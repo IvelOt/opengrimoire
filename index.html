@@ -33,9 +33,14 @@
         </button>
       </div>
     </header>
-    <button onclick="createNewCharacter()" class="btn-hero neon-effect">
-      <span class="material-icons-round">add_circle</span> <span data-i18n="btn_create">Criar Novo Personagem</span>
-    </button>
+    <div class="hero-actions">
+      <button onclick="createNewCharacter()" class="btn-hero neon-effect">
+        <span class="material-icons-round">add_circle</span> <span data-i18n="btn_create">Criar Novo Personagem</span>
+      </button>
+      <button onclick="Generator.openModal()" class="btn-hero btn-hero-secondary">
+        <span class="material-icons-round">casino</span> <span data-i18n="gen_btn_open">Gerador Rápido</span>
+      </button>
+    </div>
 
     <section id="multiplayer-panel" class="mp-panel surface-elevated" aria-label="Multiplayer">
       <div class="mp-header">
@@ -494,6 +499,85 @@
     <small data-i18n="footer_text">Copyright &copy; 2025 created by levirenato.</small>
   </footer>
 
+  <div id="generator-overlay" class="modal-overlay generator-overlay hidden" aria-hidden="true">
+    <div class="modal-box generator-box" role="dialog" aria-modal="true" aria-labelledby="gen-title">
+      <div class="modal-header">
+        <span class="material-icons-round modal-icon gen-dice-icon">casino</span>
+        <h3 id="gen-title" class="modal-title" data-i18n="gen_title">Gerador Rápido</h3>
+      </div>
+
+      <div class="generator-body">
+        <p class="gen-tagline" data-i18n="gen_tagline">Crie um herói pronto para a aventura em segundos.</p>
+
+        <div class="gen-name-row">
+          <label class="gen-label" data-i18n="gen_name_label">Nome</label>
+          <input type="text" id="gen-name-input" class="gen-name-input" placeholder="🎲">
+          <button type="button" id="gen-random-name-btn" class="btn-secondary" title="Random name">
+            <span class="material-icons-round">casino</span>
+          </button>
+        </div>
+
+        <div class="gen-controls-row">
+          <div class="gen-field">
+            <label class="gen-label" data-i18n="gen_race_label">Raça</label>
+            <select id="gen-race-select" class="gen-select"></select>
+          </div>
+          <div class="gen-field">
+            <label class="gen-label" data-i18n="gen_level_label">Nível</label>
+            <select id="gen-level-select" class="gen-select">
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+              <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="gen-method-row">
+          <span class="gen-label" data-i18n="gen_method_label">Método de atributos</span>
+          <div class="gen-btn-group">
+            <button type="button" class="gen-method-btn active" data-method="roll">
+              <span class="material-icons-round">casino</span> <span data-i18n="gen_method_roll">Rolar 4d6</span>
+            </button>
+            <button type="button" class="gen-method-btn" data-method="standard">
+              <span class="material-icons-round">equalizer</span> <span data-i18n="gen_method_standard">Array padrão</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="gen-mode-row">
+          <span class="gen-label" data-i18n="gen_mode_label">Modo de geração</span>
+          <div class="gen-btn-group">
+            <button type="button" class="gen-mode-btn active" data-mode="archetype">
+              <span class="material-icons-round">style</span> <span data-i18n="gen_mode_archetype">Arquétipo pronto</span>
+            </button>
+            <button type="button" class="gen-mode-btn" data-mode="random">
+              <span class="material-icons-round">shuffle</span> <span data-i18n="gen_mode_random">Tudo aleatório</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="gen-classes-section">
+          <span class="gen-label" data-i18n="gen_class_pick">Escolha seu arquétipo</span>
+          <div class="gen-class-grid" id="gen-class-grid"></div>
+        </div>
+
+        <div class="gen-preview">
+          <span class="gen-label" data-i18n="gen_preview_title">Prévia</span>
+          <div class="gen-preview-scores" id="gen-preview-scores"></div>
+          <div class="gen-preview-total" id="gen-preview-total"></div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" id="gen-cancel-btn" class="btn-secondary modal-btn" data-i18n="gen_cancel_btn">Cancelar</button>
+        <button type="button" id="gen-generate-btn" class="btn-primary modal-btn gen-generate-btn">
+          <span class="material-icons-round">auto_awesome</span> <span data-i18n="gen_create_btn">Criar ficha</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div id="modal-overlay" class="modal-overlay hidden">
     <div class="modal-box">
       <div class="modal-header">
@@ -512,6 +596,7 @@
   <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
   <script src="language.js"></script>
   <script src="script.js"></script>
+  <script src="generator.js"></script>
   <script src="pdf-exporter.js"></script>
   <script src="multiplayer.js"></script>
 </body>
