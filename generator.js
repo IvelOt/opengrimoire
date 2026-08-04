@@ -28,9 +28,9 @@ const Generator = {
       weapon: { nameKey: 'wpn_greataxe', dice: '1d12', ability: 'str' },
       coins: { gp: 15, sp: 0 }, speed: '9m', theme: '#E7623E',
       spells: { ability: null, cantrips: [], level1: [] },
-      equip: 'Greataxe • 4 handaxes • Explorer Pack',
-      profs: 'Light & Medium armor, Shields, Simple & Martial weapons',
-      features: 'Rage (2/day), Unarmored Defense, Danger Sense'
+      equipKey: 'eq_barbarian',
+      profsKey: 'prof_barbarian',
+      featuresKey: 'feat_barbarian'
     },
     bard: {
       nameKey: 'cls_bard', hitDie: 8, primary: 'cha', secondary: 'dex',
@@ -40,9 +40,9 @@ const Generator = {
       weapon: { nameKey: 'wpn_rapier', dice: '1d8', ability: 'dex' },
       coins: { gp: 25, sp: 0 }, speed: '9m', theme: '#AB6DAC',
       spells: { ability: 'cha', cantrips: ['spell_vicious_mockery', 'spell_prestidigitation'], level1: ['spell_healing_word', 'spell_thunderwave', 'spell_charm_person'] },
-      equip: 'Rapier • Leather armor • Dagger • Entertainer Pack • Instrument',
-      profs: 'Light armor, Simple weapons, Hand crossbows, Longswords, Rapiers, Instruments',
-      features: 'Bardic Inspiration (d6), Spellcasting, Ritual Casting'
+      equipKey: 'eq_bard',
+      profsKey: 'prof_bard',
+      featuresKey: 'feat_bard'
     },
     cleric: {
       nameKey: 'cls_cleric', hitDie: 8, primary: 'wis', secondary: 'str',
@@ -52,9 +52,9 @@ const Generator = {
       weapon: { nameKey: 'wpn_warhammer', dice: '1d8', ability: 'str' },
       coins: { gp: 15, sp: 0 }, speed: '9m', theme: '#91A1B2',
       spells: { ability: 'wis', cantrips: ['spell_light', 'spell_sacred_flame', 'spell_guidance'], level1: ['spell_cure_wounds', 'spell_bless', 'spell_guiding_bolt'] },
-      equip: 'Warhammer • Chain Shirt • Shield • Holy Symbol • Priest Pack',
-      profs: 'Light & Medium armor, Shields, Simple weapons',
-      features: 'Spellcasting, Divine Domain (Life), Channel Divinity (1/rest)'
+      equipKey: 'eq_cleric',
+      profsKey: 'prof_cleric',
+      featuresKey: 'feat_cleric'
     },
     druid: {
       nameKey: 'cls_druid', hitDie: 8, primary: 'wis', secondary: 'con',
@@ -64,9 +64,9 @@ const Generator = {
       weapon: { nameKey: 'wpn_scimitar', dice: '1d6', ability: 'dex' },
       coins: { gp: 15, sp: 0 }, speed: '9m', theme: '#7A853B',
       spells: { ability: 'wis', cantrips: ['spell_druidcraft', 'spell_produce_flame', 'spell_shillelagh'], level1: ['spell_entangle', 'spell_cure_wounds', 'spell_faerie_fire'] },
-      equip: 'Wooden shield • Scimitar • Leather armor • Explorer Pack',
-      profs: 'Light & Medium armor, Shields, Simple weapons, Herbalism kit',
-      features: 'Druidic, Spellcasting, Wild Shape (2/rest)'
+      equipKey: 'eq_druid',
+      profsKey: 'prof_druid',
+      featuresKey: 'feat_druid'
     },
     fighter: {
       nameKey: 'cls_fighter', hitDie: 10, primary: 'str', secondary: 'con',
@@ -76,9 +76,9 @@ const Generator = {
       weapon: { nameKey: 'wpn_longsword', dice: '1d8', ability: 'str' },
       coins: { gp: 20, sp: 0 }, speed: '9m', theme: '#7F513E',
       spells: { ability: null, cantrips: [], level1: [] },
-      equip: 'Longsword • Shield • Chain mail • Light crossbow • Dungeoneer Pack',
-      profs: 'All armor, Shields, Simple & Martial weapons',
-      features: 'Fighting Style (Defense), Second Wind, Action Surge'
+      equipKey: 'eq_fighter',
+      profsKey: 'prof_fighter',
+      featuresKey: 'feat_fighter'
     },
     monk: {
       nameKey: 'cls_monk', hitDie: 8, primary: 'dex', secondary: 'wis',
@@ -88,9 +88,9 @@ const Generator = {
       weapon: { nameKey: 'wpn_quarterstaff', dice: '1d6', ability: 'dex' },
       coins: { gp: 15, sp: 0 }, speed: '9m', theme: '#51A5C5',
       spells: { ability: null, cantrips: [], level1: [] },
-      equip: 'Shortsword • Quarterstaff • Dungeoneer Pack',
-      profs: 'Simple weapons, Shortswords, Choose 1 artisan tool',
-      features: 'Unarmored Defense, Martial Arts (1d4), Ki (2 points), Flurry of Blows'
+      equipKey: 'eq_monk',
+      profsKey: 'prof_monk',
+      featuresKey: 'feat_monk'
     },
     paladin: {
       nameKey: 'cls_paladin', hitDie: 10, primary: 'str', secondary: 'cha',
@@ -100,9 +100,9 @@ const Generator = {
       weapon: { nameKey: 'wpn_longsword', dice: '1d8', ability: 'str' },
       coins: { gp: 25, sp: 0 }, speed: '9m', theme: '#B59E54',
       spells: { ability: 'cha', cantrips: [], level1: ['spell_lay_on_hands', 'spell_bless', 'spell_thunderous_smite'] },
-      equip: 'Longsword • Shield • Chain mail • Holy Symbol • Priest Pack',
-      profs: 'All armor, Shields, Simple & Martial weapons',
-      features: 'Divine Sense, Lay on Hands (5 HP), Fighting Style, Divine Smite'
+      equipKey: 'eq_paladin',
+      profsKey: 'prof_paladin',
+      featuresKey: 'feat_paladin'
     },
     ranger: {
       nameKey: 'cls_ranger', hitDie: 10, primary: 'dex', secondary: 'wis',
@@ -111,10 +111,10 @@ const Generator = {
       armor: { type: 'leather', base: 11, dex: true, descKey: 'armor_leather' },
       weapon: { nameKey: 'wpn_longbow', dice: '1d8', ability: 'dex' },
       coins: { gp: 20, sp: 0 }, speed: '9m', theme: '#7A853B',
-      spells: { ability: 'wis', cantrips: [], level1: ['Hunter\'s Mark', 'spell_speak_with_animals'] },
-      equip: 'Longbow • 20 arrows • Leather armor • Shortsword • Explorer Pack',
-      profs: 'Light & Medium armor, Shields, Simple & Martial weapons',
-      features: 'Favored Enemy, Natural Explorer, Fighting Style (Archery)'
+      spells: { ability: 'wis', cantrips: [], level1: ['spell_hunters_mark', 'spell_speak_with_animals'] },
+      equipKey: 'eq_ranger',
+      profsKey: 'prof_ranger',
+      featuresKey: 'feat_ranger'
     },
     rogue: {
       nameKey: 'cls_rogue', hitDie: 8, primary: 'dex', secondary: 'con',
@@ -124,9 +124,9 @@ const Generator = {
       weapon: { nameKey: 'wpn_rapier', dice: '1d8', ability: 'dex' },
       coins: { gp: 25, sp: 0 }, speed: '9m', theme: '#4A4A4A',
       spells: { ability: null, cantrips: [], level1: [] },
-      equip: 'Rapier • Shortbow • 20 arrows • Leather armor • Thieves\' Tools • Burglar Pack',
-      profs: 'Light armor, Simple weapons, Hand crossbows, Longswords, Rapiers, Thieves\' tools',
-      features: 'Expertise, Sneak Attack (1d6), Thieves\' Cant, Cunning Action'
+      equipKey: 'eq_rogue',
+      profsKey: 'prof_rogue',
+      featuresKey: 'feat_rogue'
     },
     sorcerer: {
       nameKey: 'cls_sorcerer', hitDie: 6, primary: 'cha', secondary: 'con',
@@ -136,9 +136,9 @@ const Generator = {
       weapon: { nameKey: 'wpn_dagger', dice: '1d4', ability: 'dex' },
       coins: { gp: 25, sp: 0 }, speed: '9m', theme: '#E7623E',
       spells: { ability: 'cha', cantrips: ['spell_fire_bolt', 'spell_minor_illusion', 'spell_ray_of_frost'], level1: ['spell_magic_missile', 'spell_shield', 'spell_sleep'] },
-      equip: 'Light crossbow • 20 bolts • Dagger • Component pouch • Dungeoneer Pack',
-      profs: 'Daggers, Darts, Slings, Quarterstaffs, Light crossbows',
-      features: 'Spellcasting, Sorcerous Origin (Draconic Bloodline), Font of Magic (2 points)'
+      equipKey: 'eq_sorcerer',
+      profsKey: 'prof_sorcerer',
+      featuresKey: 'feat_sorcerer'
     },
     warlock: {
       nameKey: 'cls_warlock', hitDie: 8, primary: 'cha', secondary: 'con',
@@ -148,9 +148,9 @@ const Generator = {
       weapon: { nameKey: 'wpn_dagger', dice: '1d4', ability: 'dex' },
       coins: { gp: 25, sp: 0 }, speed: '9m', theme: '#7F513E',
       spells: { ability: 'cha', cantrips: ['spell_eldritch_blast', 'spell_mage_hand', 'spell_chill_touch'], level1: ['spell_hex', 'spell_witch_bolt', 'spell_arms_of_hadar'] },
-      equip: 'Light crossbow • 20 bolts • Leather armor • Dagger • Arcane focus • Scholar Pack',
-      profs: 'Light armor, Simple weapons',
-      features: 'Otherworldly Patron (The Fiend), Pact Magic (1 slot), Eldritch Invocation'
+      equipKey: 'eq_warlock',
+      profsKey: 'prof_warlock',
+      featuresKey: 'feat_warlock'
     },
     wizard: {
       nameKey: 'cls_wizard', hitDie: 6, primary: 'int', secondary: 'dex',
@@ -160,9 +160,9 @@ const Generator = {
       weapon: { nameKey: 'wpn_quarterstaff', dice: '1d6', ability: 'str' },
       coins: { gp: 25, sp: 0 }, speed: '9m', theme: '#51A5C5',
       spells: { ability: 'int', cantrips: ['spell_fire_bolt', 'spell_mage_hand', 'spell_minor_illusion', 'spell_ray_of_frost'], level1: ['spell_magic_missile', 'spell_shield', 'spell_mage_armor', 'spell_burning_hands'] },
-      equip: 'Quarterstaff • Dagger • Component pouch • Scholar Pack • Spellbook',
-      profs: 'Daggers, Darts, Slings, Quarterstaffs, Light crossbows',
-      features: 'Spellcasting, Arcane Recovery, Spellbook'
+      equipKey: 'eq_wizard',
+      profsKey: 'prof_wizard',
+      featuresKey: 'feat_wizard'
     }
   },
 
@@ -182,16 +182,16 @@ const Generator = {
 
   // --- Antecedentes (proficiências + equipamento inicial) ---
   backgrounds: {
-    acolyte:    { nameKey: 'bg_acolyte',    skills: ['insg', 'reli'], coins: { gp: 15, sp: 0 }, desc: 'Sacred call & holy rituals.' },
-    criminal:   { nameKey: 'bg_criminal',   skills: ['decp', 'stea'], coins: { gp: 15, sp: 0 }, desc: 'Criminal contacts & thief tools.' },
-    folk_hero:  { nameKey: 'bg_folk_hero',  skills: ['anim', 'surv'], coins: { gp: 10, sp: 0 }, desc: 'Folk hero of a village.' },
-    hermit:     { nameKey: 'bg_hermit',     skills: ['medi', 'reli'], coins: { gp: 5, sp: 0 }, desc: 'Life of seclusion & discovery.' },
-    noble:      { nameKey: 'bg_noble',      skills: ['hist', 'pers'], coins: { gp: 25, sp: 0 }, desc: 'Of noble lineage.' },
-    outlander:  { nameKey: 'bg_outlander',  skills: ['athl', 'surv'], coins: { gp: 10, sp: 0 }, desc: 'Raised in the wild.' },
-    sage:       { nameKey: 'bg_sage',       skills: ['arca', 'hist'], coins: { gp: 10, sp: 0 }, desc: 'Researcher & scholar.' },
-    sailor:     { nameKey: 'bg_sailor',     skills: ['athl', 'perc'], coins: { gp: 10, sp: 0 }, desc: 'Seafarer & navigator.' },
-    soldier:    { nameKey: 'bg_soldier',    skills: ['athl', 'inti'], coins: { gp: 10, sp: 0 }, desc: 'Veteran of a military.' },
-    urchin:     { nameKey: 'bg_urchin',     skills: ['slei', 'stea'], coins: { gp: 10, sp: 0 }, desc: 'Street survivor.' }
+    acolyte:    { nameKey: 'bg_acolyte',    skills: ['insg', 'reli'], coins: { gp: 15, sp: 0 }, descKey: 'bg_desc_acolyte' },
+    criminal:   { nameKey: 'bg_criminal',   skills: ['decp', 'stea'], coins: { gp: 15, sp: 0 }, descKey: 'bg_desc_criminal' },
+    folk_hero:  { nameKey: 'bg_folk_hero',  skills: ['anim', 'surv'], coins: { gp: 10, sp: 0 }, descKey: 'bg_desc_folk_hero' },
+    hermit:     { nameKey: 'bg_hermit',     skills: ['medi', 'reli'], coins: { gp: 5, sp: 0 }, descKey: 'bg_desc_hermit' },
+    noble:      { nameKey: 'bg_noble',      skills: ['hist', 'pers'], coins: { gp: 25, sp: 0 }, descKey: 'bg_desc_noble' },
+    outlander:  { nameKey: 'bg_outlander',  skills: ['athl', 'surv'], coins: { gp: 10, sp: 0 }, descKey: 'bg_desc_outlander' },
+    sage:       { nameKey: 'bg_sage',       skills: ['arca', 'hist'], coins: { gp: 10, sp: 0 }, descKey: 'bg_desc_sage' },
+    sailor:     { nameKey: 'bg_sailor',     skills: ['athl', 'perc'], coins: { gp: 10, sp: 0 }, descKey: 'bg_desc_sailor' },
+    soldier:    { nameKey: 'bg_soldier',    skills: ['athl', 'inti'], coins: { gp: 10, sp: 0 }, descKey: 'bg_desc_soldier' },
+    urchin:     { nameKey: 'bg_urchin',     skills: ['slei', 'stea'], coins: { gp: 10, sp: 0 }, descKey: 'bg_desc_urchin' }
   },
 
   alignments: ['lg', 'ng', 'cg', 'ln', 'n', 'cn', 'le', 'ne', 'ce'],
