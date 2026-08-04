@@ -27,6 +27,7 @@ Unlike complex platforms, this project was built to be **lightweight**, **fast**
 - ** Dynamic Spells:** The spell slot list expands automatically (Levels 1 to 9) based on character level.
 - ** Intelligent Automation:** Automatic calculation of attribute modifiers.
 - ** Quick Character Generator:** Build a complete, adventure-ready D&D 5e hero in one click — pick one of 12 class archetypes or go fully random. Attributes are rolled (4d6 drop lowest) or taken from the standard array, then distributed smartly to fit the class role, with racial bonuses, derived HP/AC/initiative, saving throws, skills, spells, starting equipment and a fantasy name.
+- ** Multiplayer (Master's Table):** Real-time WebRTC connections via PeerJS. Host a room and see a Master's Table showing party AC and HP. The Master has authoritative control over player HP and death saves during combat.
 - ** Import & Export:** Complete backup via JSON, including the avatar image.
 
 ---
