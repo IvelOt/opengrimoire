@@ -8,23 +8,15 @@ This repository is **OpenGrimoire**: a simple, modern, international, and 100% o
 
 - **Goal:** Provide a lightweight, fast, and server-independent tabletop RPG character manager, focused on simplicity and user experience.
 - **Architecture:** Client-side only Single Page Application (SPA). Data is stored entirely in the browser's `localStorage`. No server-side logic or database is used.
-- **Core Files:**
-  - `index.html`: Semantic structure, layout, and internationalization tags (`data-i18n`).
-  - `style.css`: Design System, CSS variables, Grid Layout, and Media Queries for mobile ordering (supports light/dark themes).
-  - `script.js`: Core logic (CRUD for characters, stat calculations, UI state).
-  - `language.js`: Translation dictionary and language switching logic (PT-BR and EN-US).
-  - `pdf-exporter.js`: Integration with `pdf-lib` to generate filled official PDFs from the `assets/template.pdf`.
+- **Core Files:** See the File Structure section in `README.md`.
 
 ## Tech Stack & Frozen Versions
 
 No package manager or build system is used. All dependencies are loaded via CDN or are native browser APIs.
 
 - **Language:** HTML5, CSS3, Vanilla JavaScript (ES6+)
-- **Dependencies (CDN):**
-  - `pdf-lib` v1.17.1 (for PDF generation)
-  - Google Fonts: Cinzel & Merriweather
-  - Material Icons Round
-- **Data Storage:** `localStorage` (JSON serialization)
+- **Dependencies (CDN):** See the Technologies Used section in `README.md`.
+- **Data Storage:** `localStorage` (JSON serialization) with in-memory fallback for strict/incognito modes.
 
 ## Development Workflow
 
@@ -45,7 +37,7 @@ This is a pure front-end project with no build step.
 
 ## Non-negotiable Rules
 
-1. **No Backend:** The application must remain 100% offline and server-independent. All features must rely on client-side APIs (like `localStorage` or `IndexedDB` if needed in the future).
+1. **No Backend:** The application must remain 100% offline and server-independent. All features must rely on client-side APIs (like `localStorage` or `IndexedDB` if needed in the future). WebRTC signaling for multiplayer is the only permitted exception, using public PeerJS servers without a dedicated backend.
 2. **Vanilla JS Only:** Do not introduce heavy front-end frameworks (React, Vue, Angular) or complex build tools (Webpack, Vite) without explicit user permission. The project aims to remain lightweight and accessible.
 3. **Responsive Design:** All UI changes must be mobile-friendly and utilize the established CSS Grid/Flexbox layout systems.
 4. **Internationalization:** Any new text added to the UI must be mapped in `language.js` and support both PT-BR and EN-US. Use the `data-i18n` attribute in HTML.

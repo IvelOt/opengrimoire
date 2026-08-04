@@ -33,10 +33,83 @@
         </button>
       </div>
     </header>
-    <button onclick="createNewCharacter()" class="btn-hero neon-effect">
-      <span class="material-icons-round">add_circle</span> <span data-i18n="btn_create">Criar Novo Personagem</span>
-    </button>
+    <div class="dashboard-grid">
+      <div class="dashboard-col local-col">
+        <h3 class="section-title" data-i18n="dashboard_local_adventures">Aventuras Locais</h3>
+        <div class="hero-actions">
+      <button onclick="createNewCharacter()" class="btn-hero neon-effect">
+        <span class="material-icons-round">add_circle</span> <span data-i18n="btn_create">Criar Novo Personagem</span>
+      </button>
+      <button onclick="Generator.openModal()" class="btn-hero btn-hero-secondary">
+        <span class="material-icons-round">casino</span> <span data-i18n="gen_btn_open">Gerador Rápido</span>
+      </button>
+    </div>
+
+    
+
     <div class="char-grid-list" id="character-list"></div>
+      </div>
+      <div class="dashboard-col mp-col">
+        <h3 class="section-title" data-i18n="dashboard_online_adventures">Aventuras Online</h3>
+        <section id="multiplayer-panel" class="mp-panel surface-elevated" aria-label="Multiplayer">
+      <div class="mp-header">
+        <span class="material-icons-round">groups</span>
+        <h3 data-i18n="mp_title">Multiplayer (Teste)</h3>
+      </div>
+      <div class="mp-controls" style="gap: 10px; display: flex; flex-wrap: wrap;">
+        <input type="text" id="mp-name-input" class="mp-input" maxlength="20"
+          data-i18n-placeholder="mp_name_ph" placeholder="Seu Nome">
+        <input type="text" id="mp-room-input" class="mp-input" maxlength="6"
+          data-i18n-placeholder="mp_room_ph" placeholder="XXXXXX"
+          oninput="this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '')">
+        <button type="button" class="btn-secondary" onclick="Multiplayer.createRoom()">
+          <span class="material-icons-round">person_add</span> <span data-i18n="mp_btn_host">Criar Sala</span>
+        </button>
+        <button type="button" class="btn-secondary" onclick="Multiplayer.joinRoom()">
+          <span class="material-icons-round">login</span> <span data-i18n="mp_btn_join">Entrar</span>
+        </button>
+        <button type="button" class="btn-secondary" data-i18n-title="mp_title_ping_all" title="Envia uma mensagem de teste para todos os jogadores na sala." onclick="Multiplayer.broadcast({ debug: 'ping' })">
+          <span class="material-icons-round">campaign</span> <span data-i18n="mp_btn_ping_all">Broadcast</span>
+        </button>
+        <button type="button" class="btn-secondary" data-i18n-title="mp_title_ping_host" title="Envia uma mensagem de teste apenas para o Mestre." onclick="Multiplayer.send({ debug: 'ping' })">
+          <span class="material-icons-round">send</span> <span data-i18n="mp_btn_ping_host">Ping Mestre</span>
+        </button>
+        <button type="button" class="btn-danger" onclick="Multiplayer.closeRoom()">
+          <span class="material-icons-round">logout</span> <span data-i18n="mp_btn_leave">Sair</span>
+        </button>
+      </div>
+      <div class="mp-info">
+        <span class="mp-label" data-i18n="mp_status">Status</span>
+        <span id="mp-status-text" class="mp-value">-</span>
+        <span class="mp-label" data-i18n="mp_code">Código</span>
+        <span id="mp-code-text" class="mp-value">-</span>
+        <span class="mp-label" data-i18n="mp_players">Jogadores</span>
+        <span id="mp-players-text" class="mp-value">0</span>
+      </div>
+      <div id="mp-party-panel" class="mp-party hidden" aria-label="Mesa do Mestre">
+        <div class="mp-party-header">
+          <span class="material-icons-round">shield</span>
+          <h3 data-i18n="mp_party_title">Mesa do Mestre</h3>
+        </div>
+        <div class="mp-party-wrap">
+          <table class="mp-party-table">
+            <thead>
+              <tr>
+                <th data-i18n="mp_col_player">Jogador</th>
+                <th data-i18n="mp_col_ac">CA</th>
+                <th data-i18n="mp_col_hp">HP</th>
+                <th data-i18n="mp_col_action">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="mp-party-body"></tbody>
+          </table>
+          <div id="mp-party-empty" class="mp-party-empty" data-i18n="mp_party_empty">Nenhum jogador conectado.</div>
+        </div>
+      </div>
+      <div id="mp-log" class="mp-log" aria-live="polite"></div>
+    </section>
+      </div>
+    </div>
   </div>
 
   <div id="sheet-editor" class="sheet-container hidden">
@@ -62,6 +135,10 @@
         </button>
         <button class="btn-secondary" onclick="document.getElementById('import-input').click()">
           <span class="material-icons-round">upload</span> <span data-i18n="btn_import">Importar</span>
+        </button>
+        <button class="btn-secondary" id="mp-btn-send-sheet" data-i18n-title="mp_btn_send_sheet_tip"
+          title="Envia a ficha atual para o Mestre." onclick="Multiplayer.sendSheet()">
+          <span class="material-icons-round">send</span> <span data-i18n="mp_btn_send_sheet">Enviar Ficha</span>
         </button>
         <button class="btn-primary" onclick="saveCharacter()">
           <span class="material-icons-round">save</span> <span data-i18n="btn_save">Salvar</span>
@@ -337,18 +414,21 @@
               <span class="material-symbols-outlined">favorite</span>
               <label data-i18n="lbl_hp_title">Pontos de Vida</label>
             </div>
+            <div class="hp-bar-wrap">
+              <div class="hp-bar" id="hp-visual-bar" aria-hidden="true"></div>
+            </div>
             <div class="hp-inputs">
               <div class="hp-field">
                 <label data-i18n="lbl_hp_max">Máximo</label>
-                <input type="number" name="hpMax" placeholder="0">
+                <input type="number" name="hpMax" placeholder="0" oninput="updateHpBar()">
               </div>
               <div class="hp-field hp-current-field">
                 <label data-i18n="lbl_hp_curr">Atual</label>
-                <input type="number" name="hpCurrent" placeholder="0" class="hp-current-input">
+                <input type="number" name="hpCurrent" placeholder="0" class="hp-current-input" oninput="updateHpBar()">
               </div>
               <div class="hp-field">
                 <label data-i18n="lbl_hp_temp">Temp</label>
-                <input type="number" name="hpTemp" placeholder="0">
+                <input type="number" name="hpTemp" placeholder="0" oninput="updateHpBar()">
               </div>
             </div>
           </div>
@@ -455,6 +535,85 @@
     <small data-i18n="footer_text">Copyright &copy; 2025 created by levirenato.</small>
   </footer>
 
+  <div id="generator-overlay" class="modal-overlay generator-overlay hidden" aria-hidden="true">
+    <div class="modal-box generator-box" role="dialog" aria-modal="true" aria-labelledby="gen-title">
+      <div class="modal-header">
+        <span class="material-icons-round modal-icon gen-dice-icon">casino</span>
+        <h3 id="gen-title" class="modal-title" data-i18n="gen_title">Gerador Rápido</h3>
+      </div>
+
+      <div class="generator-body">
+        <p class="gen-tagline" data-i18n="gen_tagline">Crie um herói pronto para a aventura em segundos.</p>
+
+        <div class="gen-name-row">
+          <label class="gen-label" data-i18n="gen_name_label">Nome</label>
+          <input type="text" id="gen-name-input" class="gen-name-input" placeholder="">
+          <button type="button" id="gen-random-name-btn" class="btn-secondary" data-i18n-title="gen_random_name">
+            Aleatório
+          </button>
+        </div>
+
+        <div class="gen-controls-row">
+          <div class="gen-field">
+            <label class="gen-label" data-i18n="gen_race_label">Raça</label>
+            <select id="gen-race-select" class="gen-select"></select>
+          </div>
+          <div class="gen-field">
+            <label class="gen-label" data-i18n="gen_level_label">Nível</label>
+            <select id="gen-level-select" class="gen-select">
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+              <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="gen-method-row">
+          <span class="gen-label" data-i18n="gen_method_label">Método de atributos</span>
+          <div class="gen-btn-group">
+            <button type="button" class="gen-method-btn active" data-method="roll">
+              <span class="material-icons-round">casino</span> <span data-i18n="gen_method_roll">Rolar 4d6</span>
+            </button>
+            <button type="button" class="gen-method-btn" data-method="standard">
+              <span class="material-icons-round">equalizer</span> <span data-i18n="gen_method_standard">Array padrão</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="gen-mode-row">
+          <span class="gen-label" data-i18n="gen_mode_label">Modo de geração</span>
+          <div class="gen-btn-group">
+            <button type="button" class="gen-mode-btn active" data-mode="archetype">
+              <span class="material-icons-round">style</span> <span data-i18n="gen_mode_archetype">Arquétipo pronto</span>
+            </button>
+            <button type="button" class="gen-mode-btn" data-mode="random">
+              <span class="material-icons-round">shuffle</span> <span data-i18n="gen_mode_random">Tudo aleatório</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="gen-classes-section">
+          <span class="gen-label" data-i18n="gen_class_pick">Escolha seu arquétipo</span>
+          <div class="gen-class-grid" id="gen-class-grid"></div>
+        </div>
+
+        <div class="gen-preview">
+          <span class="gen-label" data-i18n="gen_preview_title">Prévia</span>
+          <div class="gen-preview-scores" id="gen-preview-scores"></div>
+          <div class="gen-preview-total" id="gen-preview-total"></div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" id="gen-cancel-btn" class="btn-secondary modal-btn" data-i18n="gen_cancel_btn">Cancelar</button>
+        <button type="button" id="gen-generate-btn" class="btn-primary modal-btn gen-generate-btn">
+          <span class="material-icons-round">auto_awesome</span> <span data-i18n="gen_create_btn">Criar ficha</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div id="modal-overlay" class="modal-overlay hidden">
     <div class="modal-box">
       <div class="modal-header">
@@ -470,9 +629,12 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
   <script src="language.js"></script>
   <script src="script.js"></script>
+  <script src="generator.js"></script>
   <script src="pdf-exporter.js"></script>
+  <script src="multiplayer.js"></script>
 </body>
 
 </html>

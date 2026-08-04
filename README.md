@@ -18,7 +18,7 @@ Unlike complex platforms, this project was built to be **lightweight**, **fast**
 
 - ** Internationalization (i18n):** Full support for **Portuguese (BR)** and **English (US)** with instant switching.
 - ** PDF Export:** Generate your character sheet in the official 5e model, with guaranteed formatting (flattened forms) for perfect printing.
-- ** Local Persistence:** Everything is saved automatically in the browser's `LocalStorage`. Nothing goes to the cloud.
+- ** Local Persistence:** Everything is saved automatically in the browser's `LocalStorage` (with in-memory fallback). Nothing goes to the cloud.
 - ** Mobile Optimized Layout:**
   - On PC: 3-column view (dashboard style).
   - On Mobile: Intelligent priority order (Health/Combat at the top → Attributes → Equipment → Spells).
@@ -26,6 +26,8 @@ Unlike complex platforms, this project was built to be **lightweight**, **fast**
 - ** Customization:** Choose individual highlight color (theme) for each character.
 - ** Dynamic Spells:** The spell slot list expands automatically (Levels 1 to 9) based on character level.
 - ** Intelligent Automation:** Automatic calculation of attribute modifiers.
+- ** Quick Character Generator:** Build a complete, adventure-ready D&D 5e hero in one click — pick one of 12 class archetypes or go fully random. Attributes are rolled (4d6 drop lowest) or taken from the standard array, then distributed smartly to fit the class role, with racial bonuses, derived HP/AC/initiative, saving throws, skills, spells, starting equipment and a fantasy name.
+- ** Multiplayer (Master's Table):** Real-time WebRTC connections via PeerJS. Host a room and see a Master's Table showing party AC and HP. The Master has authoritative control over player HP and death saves during combat.
 - ** Import & Export:** Complete backup via JSON, including the avatar image.
 
 ---
@@ -66,8 +68,10 @@ The project maintains simplicity but is now modularized:
 - `index.html`: Semantic structure, layout, and internationalization tags (`data-i18n`).
 - `style.css`: Design System, CSS variables, Grid Layout, and Media Queries for mobile ordering.
 - `script.js`: Core logic (CRUD, Calculations, UI).
+- `generator.js`: Quick character generator (class archetypes, races, backgrounds, smart attribute rolling).
 - `language.js`: Translation dictionary and language switching logic.
 - `pdf-exporter.js`: Integration with `pdf-lib` to generate the filled official PDF.
+- `multiplayer.js`: WebRTC network layer via PeerJS for multiplayer functionality.
 
 ---
 
@@ -77,6 +81,7 @@ The project maintains simplicity but is now modularized:
 - Modern **CSS3** (CSS Variables, Flexbox, Grid, Glassmorphism).
 - **Vanilla JavaScript (ES6+)** without frameworks.
 - **PDF-Lib** (v1.17.1 via CDN) for PDF manipulation.
+- **PeerJS** (v1.5.4 via CDN) for WebRTC multiplayer functionality.
 - **Google Fonts** (Cinzel & Merriweather).
 - **Material Icons**.
 
