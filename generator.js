@@ -481,8 +481,10 @@ const Generator = {
     });
     document.getElementById('gen-classes-section').classList.toggle('hidden', mode === 'random');
     if (mode === 'random') {
-      this.state.selectedClass = this._randomClass();
-      this.state.selectedRace = this._randomRace();
+      this.state.selectedClass = 'random';
+      this.state.selectedRace = 'random';
+    } else {
+      if (this.state.selectedClass === 'random') this.state.selectedClass = 'fighter';
     }
     this.render();
   },

@@ -10,7 +10,7 @@ const Multiplayer = {
   connections: new Map(),           // Host: connectionId -> DataConnection
   connection: null,                 // Jogador: DataConnection única para o Mestre
   playerNames: new Map(),           // Host: connectionId -> nome do jogador
-  playerName: 'Jogador',
+  playerName: null,
 
   // Callbacks que a UI pode injetar
   onStatus: null,                   // (message, type) => void
@@ -72,7 +72,7 @@ const Multiplayer = {
 
   _handleHostConnection(conn) {
     this.connections.set(conn.connectionId, conn);
-    this.playerNames.set(conn.connectionId, conn.metadata?.name || 'Jogador');
+    this.playerNames.set(conn.connectionId, conn.metadata?.name || this._t('msg_player'));
 
     conn.on('data', (data) => this._handleIncoming(data, conn));
     conn.on('close', () => {
@@ -99,7 +99,7 @@ const Multiplayer = {
     }
 
     const nameEl = document.getElementById('mp-name-input');
-    this.playerName = (nameEl && nameEl.value.trim()) || 'Jogador';
+    this.playerName = (nameEl && nameEl.value.trim()) || this._t('msg_player');
 
     const code = String(roomCode || this._roomInputValue() || '').trim().toUpperCase();
     if (!/^[A-Z0-9]{6}$/.test(code)) {
@@ -159,7 +159,7 @@ const Multiplayer = {
 
     switch (parsed.kind) {
       case 'hello':
-        this.playerNames.set(conn.connectionId, parsed.payload?.name || 'Jogador');
+        this.playerNames.set(conn.connectionId, parsed.payload?.name || this._t('msg_player'));
         this._sendPeerList();
         this._updateInfo();
         break;
