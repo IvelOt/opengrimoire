@@ -315,8 +315,8 @@ const Multiplayer = {
       if (p.hpMax !== undefined) entry.hpMax = parseInt(p.hpMax, 10) || 0;
       if (p.hpCurrent !== undefined) entry.hpCurrent = parseInt(p.hpCurrent, 10) || 0;
       if (p.hpTemp !== undefined) entry.hpTemp = Math.max(0, parseInt(p.hpTemp, 10) || 0);
-      if (p.ac !== undefined) entry.ac = parseInt(p.ac, 10) || 0;
     }
+    if (p.ac !== undefined) entry.ac = parseInt(p.ac, 10) || 0;
     entry.hpCurrent = this._clampHp(entry.hpCurrent, entry.hpMax);
     this.combatState.set(conn.connectionId, entry);
     this.playerNames.set(conn.connectionId, entry.name);
