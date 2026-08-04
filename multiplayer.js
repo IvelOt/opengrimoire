@@ -44,8 +44,8 @@ const Multiplayer = {
     const nameEl = document.getElementById('mp-name-input');
     this.playerName = (nameEl && nameEl.value.trim());
     if (!this.playerName) {
-      if (typeof showAlert !== 'undefined') showAlert("Digite seu nome antes de criar a sala.");
-      else this.setStatus("Digite seu nome antes de criar a sala.", 'error');
+      if (typeof showAlert !== 'undefined') showAlert(this._t("multiplayer_name_required_host"));
+      else this.setStatus(this._t("multiplayer_name_required_host"), 'error');
       return null;
     }
     const code = roomCode ? String(roomCode).toUpperCase() : this.generateRoomCode();
@@ -128,8 +128,8 @@ const Multiplayer = {
     const nameEl = document.getElementById('mp-name-input');
     this.playerName = (nameEl && nameEl.value.trim());
     if (!this.playerName) {
-      if (typeof showAlert !== 'undefined') showAlert("Digite seu nome antes de entrar.");
-      else this.setStatus("Digite seu nome antes de entrar.", 'error');
+      if (typeof showAlert !== 'undefined') showAlert(this._t("multiplayer_name_required_join"));
+      else this.setStatus(this._t("multiplayer_name_required_join"), 'error');
       return false;
     }
 
@@ -253,7 +253,7 @@ const Multiplayer = {
       this.setStatus(this._t('mp_msg_no_conn'), 'error');
       return false;
     }
-    const char = this._getCurrentCharacter();
+    const char = (typeof collectFormData === 'function' && typeof currentId !== 'undefined' && currentId) ? collectFormData() : this._getCurrentCharacter();
     if (!char) {
       this.setStatus(this._t('mp_msg_no_char'), 'error');
       return false;

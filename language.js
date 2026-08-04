@@ -13,6 +13,10 @@ const safeStorage = {
 
 const translations = {
   'pt-BR': {
+    'dashboard_local_adventures': 'Aventuras Locais',
+    'dashboard_online_adventures': 'Aventuras Online',
+    'multiplayer_name_required_host': 'Digite seu nome antes de criar a sala.',
+    'multiplayer_name_required_join': 'Digite seu nome antes de entrar.',
     'armor_unarmored_con': 'Sem Armadura (10 + DES + CON)',
     'armor_unarmored_wis': 'Sem Armadura (10 + DES + SAB)',
     'armor_leather': 'Couro (11 + DES)',
@@ -320,6 +324,10 @@ const translations = {
     align_le: "Leal e Mau", align_ne: "Neutro e Mau", align_ce: "Caótico e Mau"
   },
   'en-US': {
+    'dashboard_local_adventures': 'Local Adventures',
+    'dashboard_online_adventures': 'Online Adventures',
+    'multiplayer_name_required_host': 'Enter your name before creating a room.',
+    'multiplayer_name_required_join': 'Enter your name before joining.',
     'armor_unarmored_con': 'Unarmored (10 + DEX + CON)',
     'armor_unarmored_wis': 'Unarmored (10 + DEX + WIS)',
     'armor_leather': 'Leather (11 + DEX)',
