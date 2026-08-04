@@ -34,6 +34,13 @@ const Multiplayer = {
       this.setStatus(this._t('mp_msg_active_session'), 'error');
       return null;
     }
+    const nameEl = document.getElementById('mp-name-input');
+    this.playerName = (nameEl && nameEl.value.trim());
+    if (!this.playerName) {
+      if (typeof showAlert !== 'undefined') showAlert("Digite seu nome antes de criar a sala.");
+      else this.setStatus("Digite seu nome antes de criar a sala.", 'error');
+      return null;
+    }
     const code = roomCode ? String(roomCode).toUpperCase() : this.generateRoomCode();
     this._openHostPeer(code, 0);
     return code;
@@ -48,7 +55,7 @@ const Multiplayer = {
 
     const peer = new Peer(this.hostId);
     this.peer = peer;
-    this._updateInfo();
+    this._updateInfo(); this._updateUI();
 
     peer.on('open', (id) => {
       this.setStatus(this._t('mp_msg_room_created', { code }), 'success');
@@ -81,7 +88,7 @@ const Multiplayer = {
       this._sendPeerList();
       this.setStatus(this._t('mp_msg_player_left', { count: this.connections.size }), 'info');
       if (this.onDisconnect) this.onDisconnect(conn);
-      this._updateInfo();
+      this._updateInfo(); this._updateUI();
     });
     conn.on('error', (err) => {
       this.setStatus(this._t('mp_msg_conn_error', { msg: err.message || err.type || err }), 'error');
@@ -89,7 +96,7 @@ const Multiplayer = {
 
     this.setStatus(this._t('mp_msg_player_joined', { count: this.connections.size }), 'success');
     if (this.onConnection) this.onConnection(conn);
-    this._updateInfo();
+    this._updateInfo(); this._updateUI();
   },
 
   joinRoom(roomCode) {
@@ -99,7 +106,12 @@ const Multiplayer = {
     }
 
     const nameEl = document.getElementById('mp-name-input');
-    this.playerName = (nameEl && nameEl.value.trim()) || this._t('msg_player');
+    this.playerName = (nameEl && nameEl.value.trim());
+    if (!this.playerName) {
+      if (typeof showAlert !== 'undefined') showAlert("Digite seu nome antes de entrar.");
+      else this.setStatus("Digite seu nome antes de entrar.", 'error');
+      return false;
+    }
 
     const code = String(roomCode || this._roomInputValue() || '').trim().toUpperCase();
     if (!/^[A-Z0-9]{6}$/.test(code)) {
@@ -110,7 +122,7 @@ const Multiplayer = {
     this.role = 'player';
     this.roomCode = code;
     this.hostId = 'OG-' + code;
-    this._updateInfo();
+    this._updateInfo(); this._updateUI();
 
     const peer = new Peer();
     this.peer = peer;
@@ -161,7 +173,7 @@ const Multiplayer = {
       case 'hello':
         this.playerNames.set(conn.connectionId, parsed.payload?.name || this._t('msg_player'));
         this._sendPeerList();
-        this._updateInfo();
+        this._updateInfo(); this._updateUI();
         break;
       case 'peer-list':
         this._renderPeerList(parsed.payload || []);
@@ -218,11 +230,11 @@ const Multiplayer = {
     this.connection = null;
     this.connections = new Map();
     this.playerNames = new Map();
-    this.role = null;
+    this.role = null; this._updateUI();
     this.roomCode = null;
     this.hostId = null;
     this.setStatus(this._t('mp_msg_session_closed'), 'info');
-    this._updateInfo();
+    this._updateInfo(); this._updateUI();
   },
 
   setStatus(message, type = 'info') {
@@ -244,6 +256,29 @@ const Multiplayer = {
     el.appendChild(line);
     while (el.childNodes.length > 60) el.removeChild(el.firstChild);
     el.scrollTop = el.scrollHeight;
+  },
+
+  
+  _updateUI() {
+    const isHost = this.role === 'host';
+    const isPlayer = this.role === 'player';
+    const isConnected = !!this.peer;
+
+    const btnCreate = document.querySelector('button[onclick="Multiplayer.createRoom()"]');
+    const btnJoin = document.querySelector('button[onclick="Multiplayer.joinRoom()"]');
+    const btnBroadcast = document.querySelector('button[onclick*="Multiplayer.broadcast"]');
+    const btnSend = document.querySelector('button[onclick*="Multiplayer.send"]');
+    const btnLeave = document.querySelector('button[onclick="Multiplayer.closeRoom()"]');
+    const inputName = document.getElementById('mp-name-input');
+    const inputRoom = document.getElementById('mp-room-input');
+
+    if(btnCreate) btnCreate.disabled = isConnected;
+    if(btnJoin) btnJoin.disabled = isConnected;
+    if(btnBroadcast) btnBroadcast.disabled = !isHost;
+    if(btnSend) btnSend.disabled = !isPlayer;
+    if(btnLeave) btnLeave.disabled = !isConnected;
+    if(inputName) inputName.disabled = isConnected;
+    if(inputRoom) inputRoom.disabled = isConnected;
   },
 
   _updateInfo() {
@@ -276,3 +311,4 @@ document.addEventListener('DOMContentLoaded', () => {
     Multiplayer.setStatus(Multiplayer._t('mp_msg_received', { data: JSON.stringify(payload) }), 'success');
   };
 });
+setTimeout(() => Multiplayer._updateUI(), 500);

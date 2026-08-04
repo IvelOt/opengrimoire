@@ -1646,3 +1646,25 @@ button:active {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   }
 }
+
+/* Dashboard Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  align-items: flex-start;
+}
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.dashboard-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.mp-input {
+  min-width: 120px;
+  flex: 1;
+}
