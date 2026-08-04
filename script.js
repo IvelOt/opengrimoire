@@ -240,6 +240,10 @@ function loadCharacter(id) {
   isDirty = false;
   charForm.addEventListener('input', markDirty);
   charForm.addEventListener('change', markDirty);
+
+  if (typeof Multiplayer !== 'undefined' && typeof Multiplayer.afterCharacterLoad === 'function') {
+    Multiplayer.afterCharacterLoad();
+  }
 }
 
 function markDirty() {

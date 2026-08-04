@@ -1396,6 +1396,117 @@ button:active {
 .mp-log-line.mp-log-error { color: var(--semantic-error); }
 .mp-log-line.mp-log-success { color: #2e7d32; }
 
+/* ===== MULTIPLAYER MASTER'S TABLE (PARTY PANEL) ===== */
+.mp-party {
+  margin-top: 14px;
+  border-top: 1px solid var(--border-soft);
+  padding-top: 12px;
+}
+
+.mp-party-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.mp-party-header .material-icons-round {
+  color: var(--accent-primary);
+}
+
+.mp-party-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.mp-party-wrap {
+  overflow-x: auto;
+}
+
+.mp-party-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.mp-party-table th,
+.mp-party-table td {
+  text-align: left;
+  padding: 8px 8px;
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: middle;
+}
+
+.mp-party-table th {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.7rem;
+}
+
+.mp-party-name {
+  min-width: 90px;
+  word-break: break-word;
+}
+
+.mp-party-empty {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 12px 8px;
+}
+
+.mp-party-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.mp-party-actions .btn-secondary,
+.mp-party-actions .btn-danger {
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.mp-party-num {
+  width: 56px;
+  background: transparent;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 4px 6px;
+  color: var(--text-primary);
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.mp-party-delta {
+  width: 56px;
+}
+
+.mp-party-hp {
+  white-space: nowrap;
+}
+
+.mp-party-hp input,
+.mp-party-hp span {
+  display: inline-block;
+}
+
+.mp-party-temp-label {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  margin-right: 4px;
+}
+
+.mp-locked input[readonly],
+.mp-locked input[disabled] {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
 /* ===== GENERATOR MODAL ===== */
 .generator-overlay .modal-box {
   max-width: 620px;

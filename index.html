@@ -86,6 +86,26 @@
         <span class="mp-label" data-i18n="mp_players">Jogadores</span>
         <span id="mp-players-text" class="mp-value">0</span>
       </div>
+      <div id="mp-party-panel" class="mp-party hidden" aria-label="Mesa do Mestre">
+        <div class="mp-party-header">
+          <span class="material-icons-round">shield</span>
+          <h3 data-i18n="mp_party_title">Mesa do Mestre</h3>
+        </div>
+        <div class="mp-party-wrap">
+          <table class="mp-party-table">
+            <thead>
+              <tr>
+                <th data-i18n="mp_col_player">Jogador</th>
+                <th data-i18n="mp_col_ac">CA</th>
+                <th data-i18n="mp_col_hp">HP</th>
+                <th data-i18n="mp_col_action">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="mp-party-body"></tbody>
+          </table>
+          <div id="mp-party-empty" class="mp-party-empty" data-i18n="mp_party_empty">Nenhum jogador conectado.</div>
+        </div>
+      </div>
       <div id="mp-log" class="mp-log" aria-live="polite"></div>
     </section>
       </div>
@@ -115,6 +135,10 @@
         </button>
         <button class="btn-secondary" onclick="document.getElementById('import-input').click()">
           <span class="material-icons-round">upload</span> <span data-i18n="btn_import">Importar</span>
+        </button>
+        <button class="btn-secondary" id="mp-btn-send-sheet" data-i18n-title="mp_btn_send_sheet_tip"
+          title="Envia a ficha atual para o Mestre." onclick="Multiplayer.sendSheet()">
+          <span class="material-icons-round">send</span> <span data-i18n="mp_btn_send_sheet">Enviar Ficha</span>
         </button>
         <button class="btn-primary" onclick="saveCharacter()">
           <span class="material-icons-round">save</span> <span data-i18n="btn_save">Salvar</span>
